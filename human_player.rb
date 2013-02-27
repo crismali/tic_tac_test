@@ -1,6 +1,8 @@
 class HumanPlayer
 
-  def mark_the_board(board)
+  def mark_the_board(board, which_player, input)
+
+    board[input.to_i - 1] = which_player unless board[input.to_i - 1].is_a? String
 
     return board
 
