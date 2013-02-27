@@ -21,6 +21,12 @@ class HumanPlayerTest < Test::Unit::TestCase
 
   end
 
+  def test_mark_the_board_returns_something
+
+    assert_not_nil @player.mark_the_board('X')
+
+  end
+
 
 
 end
