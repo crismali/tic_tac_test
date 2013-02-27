@@ -1,8 +1,10 @@
 require 'test/unit'
 require './human_player.rb'
 
-class GameTest < Test::Unit::TestCase
+class HumanPlayerTest < Test::Unit::TestCase
 
+  def test
 
+  end
 
 end
