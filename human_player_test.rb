@@ -16,15 +16,19 @@ class HumanPlayerTest < Test::Unit::TestCase
   end
 
   def test_mark_the_board_accepts_an_argument
-
     assert_nothing_raised(ArgumentError) {@player.mark_the_board('X')}
-
   end
 
   def test_mark_the_board_returns_something
-
     assert_not_nil @player.mark_the_board('X')
+  end
 
+  def test_get_human_input_accepts_argument
+    assert_nothing_raised(ArgumentError) {@player.get_human_input('1')}
+  end
+
+  def test_get_human_input_returns_argument
+    assert_equal '1', @player.get_human_input('1')
   end
 
 
