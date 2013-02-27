@@ -1,5 +1,11 @@
 class HumanPlayer
 
+  attr_accessor :which_player
+
+  def initialize(which_player)
+    @which_player = which_player
+  end
+
   def mark_the_board(board, which_player, input)
 
     board[input.to_i - 1] = which_player unless board[input.to_i - 1].is_a? String
@@ -19,7 +25,6 @@ class HumanPlayer
   end
 
   def valid_human_input?(input)
-
     if input.to_i > 0 && input.to_i < 10
       return true
     else

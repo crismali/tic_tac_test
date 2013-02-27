@@ -4,8 +4,7 @@ require './human_player.rb'
 class HumanPlayerTest < Test::Unit::TestCase
 
   def setup
-    @player = HumanPlayer.new
-    @which_player = 'X'
+    @player = HumanPlayer.new('X')
   end
 
   def test_human_player_is_a_class
@@ -41,11 +40,15 @@ class HumanPlayerTest < Test::Unit::TestCase
   end
 
   def test_mark_the_board_actually_marks_the_board
-    assert_equal [1,2,'X'], @player.mark_the_board([1,2,3], @which_player, '3')
+    assert_equal [1,2,'X'], @player.mark_the_board([1,2,3], @player.which_player, '3')
   end
 
   def test_mark_the_board_cant_mark_already_selected_space
-    assert_equal [1,2,'O'], @player.mark_the_board([1,2,'O'], @which_player, '3')
+    assert_equal [1,2,'O'], @player.mark_the_board([1,2,'O'], @player.which_player, '3')
+  end
+
+  def test_human_player_has_which_player_attribute_and_method
+    assert_equal 'X', @player.which_player
   end
 
 
