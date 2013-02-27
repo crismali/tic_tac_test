@@ -1,6 +1,7 @@
 class Game
 
   include GetLines
+  include VictoryChecks
 
   attr_accessor :board
 
