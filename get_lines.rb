@@ -2,6 +2,14 @@ module GetLines
 
   def get_lines(board)
 
+    lines = Array.new
+
+    lines << get_diagonals(board)
+    lines << get_rows(board)
+    lines << get_columns(board)
+
+    return lines.flatten(1)
+
   end
 
   def get_diagonals(board)

@@ -55,6 +55,14 @@ class GameTest < Test::Unit::TestCase
     assert_equal [3,6,9], column_3
   end
 
+  def test_get_lines_returns_array
+    assert_kind_of Array, @game.get_lines(@game.board)
+  end
 
+  def test_get_lines_returns_array_containing_each_line
+    all_lines = [ [1,5,9], [3,5,7], [1,2,3],[4,5,6],[7,8,9], [1,4,7],[2,5,8],[3,6,9]]
+
+    assert_equal all_lines, @game.get_lines(@game.board)
+  end
 
 end
