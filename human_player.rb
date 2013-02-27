@@ -16,4 +16,14 @@ class HumanPlayer
 
   end
 
+  def valid_human_input?(input)
+
+    if input.to_i > 0 && input.to_i < 10
+      return true
+    else
+      puts "Invalid choice: only numbers that are greater than 0 or less than 10 are accepted"
+      return false
+    end
+  end
+
 end

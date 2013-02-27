@@ -31,6 +31,14 @@ class HumanPlayerTest < Test::Unit::TestCase
     assert_equal '1', @player.get_human_input('1')
   end
 
+  def test_valid_human_input_returns_true_for_valid_input
+    assert_equal true, @player.valid_human_input?('3')
+  end
+
+  def test_valid_human_input_returns_false_for_invalid_input
+    assert_equal false, @player.valid_human_input?('cat')
+  end
+
 
 
 end
