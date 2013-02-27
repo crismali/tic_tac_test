@@ -11,5 +11,9 @@ class GameTest < Test::Unit::TestCase
     assert_respond_to @game, :board, 'No board method'
   end
 
+  def test_game_initializes_board
+    assert_equal [1,2,3,4,5,6,7,8,9], @game.board
+  end
+
 
 end
