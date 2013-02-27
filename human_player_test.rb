@@ -15,4 +15,12 @@ class HumanPlayerTest < Test::Unit::TestCase
     assert_respond_to @player, :mark_the_board, 'No mark the board method'
   end
 
+  def test_mark_the_board_accepts_an_argument
+
+    assert_nothing_raised(ArgumentError) {@player.mark_the_board('X')}
+
+  end
+
+
+
 end
