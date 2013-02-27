@@ -1,41 +1,41 @@
 module GetLines
 
-  def get_lines(board)
+  def get_lines
 
     lines = Array.new
 
-    lines << get_diagonals(board)
-    lines << get_rows(board)
-    lines << get_columns(board)
+    lines << get_diagonals
+    lines << get_rows
+    lines << get_columns
 
     return lines.flatten(1)
 
   end
 
-  def get_diagonals(board)
+  def get_diagonals
 
-    diagonal_1 = board.values_at(0,4,8)
-    diagonal_2 = board.values_at(2,4,6)
+    diagonal_1 = @board.values_at(0,4,8)
+    diagonal_2 = @board.values_at(2,4,6)
 
     return diagonal_1, diagonal_2
 
   end
 
-  def get_rows(board)
+  def get_rows
 
-    row_1 = board.values_at(0,1,2)
-    row_2 = board.values_at(3,4,5)
-    row_3 = board.values_at(6,7,8)
+    row_1 = @board.values_at(0,1,2)
+    row_2 = @board.values_at(3,4,5)
+    row_3 = @board.values_at(6,7,8)
 
     return row_1, row_2, row_3
 
   end
 
-  def get_columns(board)
+  def get_columns
 
-    column_1 = board.values_at(0,3,6)
-    column_2 = board.values_at(1,4,7)
-    column_3 = board.values_at(2,5,8)
+    column_1 = @board.values_at(0,3,6)
+    column_2 = @board.values_at(1,4,7)
+    column_3 = @board.values_at(2,5,8)
 
     return column_1, column_2, column_3
 
