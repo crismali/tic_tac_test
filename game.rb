@@ -1,5 +1,7 @@
 class Game
 
+  include GetLines
+
   attr_accessor :board
 
   def initialize
