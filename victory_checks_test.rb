@@ -14,7 +14,7 @@ class GameTest < Test::Unit::TestCase
   end
 
   def test_draw_method_returns_true_if_it_is_a_draw
-    @game.board = [ 'O','O','O','O','X','X','X','X','X']
+    @game.board = [ 'O','X','O','O','O','X','X','O','X']
     assert_equal true, @game.draw?
   end
 
