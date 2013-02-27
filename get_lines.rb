@@ -25,6 +25,12 @@ module GetLines
 
   def get_columns(board)
 
+    column_1 = board
+    column_2 = board
+    column_3 = board
+
+    return column_1, column_2, column_3
+
   end
 
 end
