@@ -17,6 +17,10 @@ class ComputerPlayer
 
     selected_space = complete_for_win_or_block(game)
 
+    selected_space ||= going_first_strategies(game) if @which_player == 'X'
+
+    selected_space ||= going_second_strategies(game) if @which_player == 'O'
+
     selected_space ||= choose_line_towards_victory(game)
 
     selected_space ||= choose_center_if_available(game)
@@ -89,6 +93,14 @@ class ComputerPlayer
       end
     end
     return selected_space
+  end
+
+  def going_first_strategies(game)
+
+  end
+
+  def going_second_strategies(game)
+
   end
 
 

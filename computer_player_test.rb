@@ -116,6 +116,13 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_equal false, (@game2.board == @game.board)
   end
 
+  def test_responds_to_going_first_strategies
+    assert_respond_to @cpu, :going_first_strategies
+  end
+
+  def test_responds_to_going_second_strategies
+    assert_respond_to @cpu, :going_second_strategies
+  end
 
 
 
