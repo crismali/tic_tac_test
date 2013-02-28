@@ -69,8 +69,14 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_equal false, @cpu.complete_for_win_or_block(@game)
   end
 
-  def test_mark_the_board_works_with_cfw_or_block_method_and_returns_board
+  def test_choose_random_available_space
+    @game.board = [ 'X', 'O', 'O', 'X', 'O', 'O', 'X', 'O', 9 ]
+    assert_equal 9, @cpu.choose_random_available_space(@game)
+  end
 
+  def test_cras_method_wont_return_letter
+    @game.board = [ 'X', 'O', 'O', 4, 5, 6, 7, 8, 9 ]
+    assert_kind_of Integer, @cpu.choose_random_available_space(@game)
   end
 
 

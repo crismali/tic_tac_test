@@ -13,11 +13,14 @@ class ComputerPlayer
   end
 
   def mark_the_board(game)
-    selected_space = complete_for_win_or_block(game)
-
-    game.board[game.board.index(selected_space)] = selected_space if selected_space.is_a? Integer
 
     return game.board
+  end
+
+  def choose_random_available_space(game)
+    board_clone = game.board.clone
+    board_clone.delete_if {|x| x.is_a? String}
+    return board_clone.sample
   end
 
   def complete_for_win_or_block(game)
