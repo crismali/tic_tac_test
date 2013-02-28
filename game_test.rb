@@ -1,4 +1,5 @@
 require 'test/unit'
+require './array_methods.rb'
 require './get_lines.rb'
 require './victory_checks.rb'
 require './game.rb'
