@@ -1,4 +1,5 @@
 require 'test/unit'
+require './array_methods.rb'
 require './get_lines.rb'
 require './victory_checks.rb'
 require './game.rb'
@@ -78,6 +79,41 @@ class ComputerPlayerTest < Test::Unit::TestCase
     @game.board = [ 'X', 'O', 'O', 4, 5, 6, 7, 8, 9 ]
     assert_kind_of Integer, @cpu.choose_random_available_space(@game)
   end
+
+  def test_choose_line_towards_victory_selects_properly
+    @game.board = [ 1, 2, 3, 'O', 'O', 'X', 7, 8, 9 ]
+    assert_equal 9, @cpu.choose_line_towards_victory(@game)
+  end
+
+  def test_choose_line_towards_victory_returns_false_if_criteria_is_not_met
+    assert_equal false, @cpu.choose_line_towards_victory(@game)
+  end
+
+  def test_choose_corner_if_available_returns_corner
+    @game.board = [ 1, 2, 3, 'O', 'O', 'X', 7, 8, 9 ]
+    assert_equal 9, @cpu.choose_corner_if_available(@game)
+  end
+
+  def test_ccia_returns_corner_other_than_nine
+    @game.board = [ 1, 2, 3, 'O', 'O', 'X', 7, 8, 'O' ]
+    assert_equal 7, @cpu.choose_corner_if_available(@game)
+  end
+
+  def test_ccia_returns_false_if_no_corners_available
+    @game.board = [ 'O', 2, 'O', 'O', 'O', 'X', 'X', 8, 'X' ]
+    assert_equal false, @cpu.choose_corner_if_available(@game)
+  end
+
+  def test_choose_center_if_available_returns_center_if_available
+    assert_equal 5, @cpu.choose_center_if_available(@game)
+  end
+
+  def test_choose_center_returns_false_when_center_not_available
+    @game.board[4] = 'X'
+    assert_equal false, @cpu.choose_center_if_available(@game)
+  end
+
+
 
 
 
