@@ -12,4 +12,8 @@ class ComputerPlayer
     return board
   end
 
+  def complete_for_win_or_block(board)
+
+  end
+
 end

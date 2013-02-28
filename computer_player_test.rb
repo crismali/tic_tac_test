@@ -32,6 +32,14 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_kind_of Array, @cpu.mark_the_board(@game.board)
   end
 
+  def test_cpu_has_complete_for_win_or_block_method
+    assert_respond_to @cpu, :complete_for_win_or_block
+  end
+
+  def test_cpus_complete_for_win_or_block_method_accepts_an_argument
+    assert_nothing_raised(ArgumentError) {@cpu.complete_for_win_or_block(@game.board)}
+  end
+
 
 
 end
