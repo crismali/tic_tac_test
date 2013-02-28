@@ -109,6 +109,14 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_equal false, @cpu.choose_center_if_available(@game)
   end
 
+  def test_mark_the_board_changes_board_in_game_object
+    @game2 = Game.new
+    @cpu.mark_the_board(@game)
+    assert_not_equal @game2.board, @game.board
+    assert_equal false, (@game2.board == @game.board)
+  end
+
+
 
 
 

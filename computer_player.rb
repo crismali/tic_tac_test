@@ -13,9 +13,19 @@ class ComputerPlayer
   end
 
   def mark_the_board(game)
+    selected_space = false
 
+    selected_space = complete_for_win_or_block(game)
 
+    selected_space ||= choose_line_towards_victory(game)
 
+    selected_space ||= choose_center_if_available(game)
+
+    selected_space ||= choose_corner_if_available(game)
+
+    selected_space ||= choose_random_available_space
+
+    game.board[game.board.index(selected_space)] = @which_player
 
   end
 
