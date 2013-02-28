@@ -29,10 +29,6 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_nothing_raised(ArgumentError) {@cpu.mark_the_board(@game)}
   end
 
-  def test_mark_the_board_returns_an_array
-    assert_kind_of Array, @cpu.mark_the_board(@game)
-  end
-
   def test_cpu_has_complete_for_win_or_block_method
     assert_respond_to @cpu, :complete_for_win_or_block
   end
@@ -111,6 +107,12 @@ class ComputerPlayerTest < Test::Unit::TestCase
   def test_choose_center_returns_false_when_center_not_available
     @game.board[4] = 'X'
     assert_equal false, @cpu.choose_center_if_available(@game)
+  end
+
+  def test_something_method_changes_real_board?
+    @cpu.something(@game)
+    puts @game.board.inspect
+    assert_equal 'x', @game.board
   end
 
 

@@ -14,7 +14,9 @@ class ComputerPlayer
 
   def mark_the_board(game)
 
-    return game.board
+
+
+
   end
 
   def choose_center_if_available(game)
@@ -77,6 +79,11 @@ class ComputerPlayer
       end
     end
     return selected_space
+  end
+
+  def something(game)
+    game.get_lines.each {|line| line = 'c'}
+
   end
 
 
