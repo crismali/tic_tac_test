@@ -25,11 +25,11 @@ class ComputerPlayerTest < Test::Unit::TestCase
   end
 
   def test_mark_the_board_accepts_an_argument
-    assert_nothing_raised(ArgumentError) {@cpu.mark_the_board('something')}
+    assert_nothing_raised(ArgumentError) {@cpu.mark_the_board(@game)}
   end
 
   def test_mark_the_board_returns_an_array
-    assert_kind_of Array, @cpu.mark_the_board(@game.board)
+    assert_kind_of Array, @cpu.mark_the_board(@game)
   end
 
   def test_cpu_has_complete_for_win_or_block_method
@@ -67,6 +67,10 @@ class ComputerPlayerTest < Test::Unit::TestCase
   def test_cfw_or_block_returns_false_when_line_is_fully_marked
     @game.board = [ 'X', 'O', 'O', 4, 5, 6, 7, 8, 9 ]
     assert_equal false, @cpu.complete_for_win_or_block(@game)
+  end
+
+  def test_mark_the_board_works_with_cfw_or_block_method_and_returns_board
+
   end
 
 
