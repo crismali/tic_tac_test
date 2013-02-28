@@ -109,11 +109,7 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_equal false, @cpu.choose_center_if_available(@game)
   end
 
-  def test_something_method_changes_real_board?
-    @cpu.something(@game)
-    puts @game.board.inspect
-    assert_equal 'x', @game.board
-  end
+
 
 
 

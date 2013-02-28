@@ -81,10 +81,6 @@ class ComputerPlayer
     return selected_space
   end
 
-  def something(game)
-    game.get_lines.each {|line| line = 'c'}
-
-  end
 
 
 
