@@ -6,4 +6,10 @@ class ComputerPlayer
     @which_player = which_player
   end
 
+  def mark_the_board(board)
+
+
+    return board
+  end
+
 end
