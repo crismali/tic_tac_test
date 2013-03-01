@@ -103,6 +103,28 @@ class ComputerPlayer
 
   end
 
+  def block_three_corner_strategy(game)
+
+
+    diagonals = game.get_diagonals
+
+    # if 1 == human_turns
+    #   diagonals.each do |diagonal|
+    #     if diagonal.first == @other_player || diagonal.last == @other_player
+
+    #     end
+    #   end
+    # end
+
+  end
+
+  def how_many_turns(game)
+    board = game.board.clone
+    human_turns = board.count {|x| x == @other_player}
+    cpu_turns = board.count {|x| x == @which_player}
+    return cpu_turns, human_turns
+  end
+
 
 
 

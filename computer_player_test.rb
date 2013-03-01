@@ -124,6 +124,24 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_respond_to @cpu, :going_second_strategies
   end
 
+  def test_responds_to_block_three_corner_strategy
+    assert_respond_to @cpu, :block_three_corner_strategy
+  end
+
+  def responds_to_how_many_turns_method
+    assert_respond_to @cpu, :how_many_turns
+  end
+
+  def test_how_many_turns_returns_proper_values
+    @game.board = [  1, 2, 3, 'X', 'X', 'O', 7, 8, 9 ]
+
+    cpu_turns, human_turns = @cpu.how_many_turns(@game)
+
+    assert_equal 2, cpu_turns
+    assert_equal 1, human_turns
+  end
+
+
 
 
 
