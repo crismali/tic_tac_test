@@ -135,20 +135,20 @@ class ComputerPlayerTest < Test::Unit::TestCase
   def test_how_many_turns_returns_proper_values
     @game.board = [  1, 2, 3, 'X', 'X', 'O', 7, 8, 9 ]
 
-    cpu_turns, human_turns = @cpu.how_many_turns(@game)
+    turns = @cpu.how_many_turns(@game)
 
-    assert_equal 2, cpu_turns
-    assert_equal 1, human_turns
+    assert_equal 2, turns[:cpu]
+    assert_equal 1, turns[:human]
   end
 
   def test_how_many_turns_returns_proper_values_when_cpu_goes_second
     @cpu = ComputerPlayer.new('O')
     @game.board = [  1, 2, 3, 'X', 'X', 'O', 7, 8, 9 ]
 
-    cpu_turns, human_turns = @cpu.how_many_turns(@game)
+    turns = @cpu.how_many_turns(@game)
 
-    assert_equal 2, human_turns
-    assert_equal 1, cpu_turns
+    assert_equal 2, turns[:human]
+    assert_equal 1, turns[:cpu]
   end
 
 
