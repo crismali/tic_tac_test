@@ -17,9 +17,9 @@ class ComputerPlayer
 
     selected_space = complete_for_win_or_block(game)
 
-    selected_space ||= going_first_strategies(game) if @which_player == 'X'
+    selected_space ||= play_double_loss_strategy(game) if @which_player == 'X'
 
-    selected_space ||= going_second_strategies(game) if @which_player == 'O'
+    selected_space ||= block_double_loss_strategy(game) if @which_player == 'O'
 
     selected_space ||= choose_line_towards_victory(game)
 
@@ -70,7 +70,6 @@ class ComputerPlayer
         line_clone = line.clone.delete_if {|x| x.is_a? String}
 
         unless line_clone.empty?
-
           if line.include?(@which_player)
             selected_space = line_clone.first
           else
@@ -95,22 +94,19 @@ class ComputerPlayer
     return selected_space
   end
 
-  def going_first_strategies(game)
-    #three corner strat
+  def play_double_loss_strategy(game)
+    selected_space = false
     turns = how_many_turns(game)
     if turns[:cpu] == 0 || turns[:cpu] == 2
-        selected_space = choose_corner_if_available(game)
-      elsif turns[:cpu] == 1
-        selected_space = 1 if game.board.include? 1
-        selected_space ||= choose_corner_if_available(game)
-      end
+      selected_space = choose_corner_if_available(game)
+    elsif turns[:cpu] == 1
+      selected_space = 1 if game.board.include? 1
+      selected_space ||= choose_corner_if_available(game)
+    end
+    return selected_space
   end
 
-  def going_second_strategies(game)
-    selected_space = block_double_loss_strategies(game)
-  end
-
-  def block_double_loss_strategies(game)
+  def block_double_loss_strategy(game)
     selected_space = false
     turns = how_many_turns(game)
     corners = game.board.values_at(0,8,2,6)
@@ -127,8 +123,6 @@ class ComputerPlayer
 
     return selected_space
   end
-
-
 
   def how_many_turns(game)
     board = game.board.clone
