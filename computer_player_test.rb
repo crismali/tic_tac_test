@@ -166,12 +166,74 @@ class ComputerPlayerTest < Test::Unit::TestCase
   end
 
   def test_play_double_loss_strategy_plays_right_on_first_move
-    @cpu.play_double_loss_strategy(game)
+    cpu_choice = @cpu.play_double_loss_strategy(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+    assert_equal 'X', @game.board[8]
   end
 
+  def test_pdls_works_when_human_chooses_center_first
+    @game.board[8] = 'X'
+    @game.board[4] = 'O'
+    cpu_choice = @cpu.play_double_loss_strategy(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+    assert_equal 'X', @game.board[0]
+  end
 
+  def test_pdls_works_when_human_chooses_center_then_chooses_corner
+    @game.board[8] = 'X'
+    @game.board[4] = 'O'
+    @game.board[0] = 'X'
+    @game.board[2] = 'O'
+    cpu_choice = @cpu.play_double_loss_strategy(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+    assert_equal 'X', @game.board[6]
+  end
 
+  def test_pdls_works_when_human_chooses_corner_first
+    @game.board[8] = 'X'
+    @game.board[2] = 'O'
+    cpu_choice = @cpu.play_double_loss_strategy(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+    assert_equal 'X', @game.board[0]
+  end
 
+  def test_pdls_works_when_human_chooses_corner_then_chooses_center
+    @game.board[8] = 'X'
+    @game.board[2] = 'O'
+    @game.board[0] = 'X'
+    @game.board[4] = 'O'
+    cpu_choice = @cpu.play_double_loss_strategy(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+    assert_equal 'X', @game.board[6]
+  end
 
+  def test_pdls_works_when_human_chooses_opposite_corner_first
+    @game.board[8] = 'X'
+    @game.board[0] = 'O'
+    cpu_choice = @cpu.play_double_loss_strategy(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+    assert_equal 'X', @game.board[6]
+  end
+
+  def test_pdls_works_when_human_chooses_opposite_corner_first_then_blocks_cpu
+    @game.board[8] = 'X'
+    @game.board[0] = 'O'
+    @game.board[6] = 'X'
+    @game.board[7] = 'O'
+    cpu_choice = @cpu.play_double_loss_strategy(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+    assert_equal 'X', @game.board[2]
+  end
+
+  def test_pdls_works_when_human_chooses_opposite_corner_first_then_blocks_cpu
+    @game.board[8] = 'X'
+    @game.board[0] = 'O'
+    @game.board[6] = 'X'
+    @game.board[7] = 'O'
+    cpu_choice = @cpu.play_double_loss_strategy(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+
+    assert_equal ['O',2,'X',4,5,6,'X','O','X'], @game.board
+  end
 
 end
