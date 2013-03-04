@@ -13,8 +13,8 @@ module Setup
   def play_against_friend_or_cpu?
     puts "\nWould you like to play against a friend (option 1)"
     puts "or against the computer (option 2)?\n"
-
-    until player_2
+    player_2_class = false
+    until player_2_class
       user_input = gets.chomp
 
       if user_input == "1"
