@@ -1,9 +1,14 @@
 require 'test/unit'
+require './get_lines.rb'
+require './victory_checks.rb'
+require './setup.rb'
+require './game.rb'
 require './human_player.rb'
 
 class HumanPlayerTest < Test::Unit::TestCase
 
   def setup
+    @game = Game.new
     @player = HumanPlayer.new('X')
   end
 
@@ -16,11 +21,7 @@ class HumanPlayerTest < Test::Unit::TestCase
   end
 
   def test_mark_the_board_accepts_an_argument
-    assert_nothing_raised(ArgumentError) {@player.mark_the_board([1,2,3],'X','3')}
-  end
-
-  def test_mark_the_board_returns_something
-    assert_not_nil @player.mark_the_board([1,2,3],'X','3')
+    assert_nothing_raised(ArgumentError) {@player.mark_the_board(@game, '1')}
   end
 
   def test_get_human_input_accepts_argument
@@ -40,17 +41,18 @@ class HumanPlayerTest < Test::Unit::TestCase
   end
 
   def test_mark_the_board_actually_marks_the_board
-    assert_equal [1,2,'X'], @player.mark_the_board([1,2,3], @player.which_player, '3')
+    @player.mark_the_board(@game, '1')
+    assert_equal @game.board[0], 'X'
   end
 
   def test_mark_the_board_cant_mark_already_selected_space
-    assert_equal [1,2,'O'], @player.mark_the_board([1,2,'O'], @player.which_player, '3')
+    @game.board[2] = 'O'
+    @player.mark_the_board(@game, '3')
+    assert_equal 'O', @game.board[2]
   end
 
   def test_human_player_has_which_player_attribute_and_method
     assert_equal 'X', @player.which_player
   end
-
-
 
 end
