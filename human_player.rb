@@ -8,6 +8,9 @@ class HumanPlayer
 
   def mark_the_board(game, *test)
 
+    puts "Please enter a number that corresponds to an unmarked space."
+    puts "(psst, in case you forgot, you're #{@which_player}'s)"
+
     input = false
     input = test.first unless test.empty?
     until input
