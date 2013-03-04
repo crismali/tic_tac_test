@@ -1,7 +1,7 @@
 module VictoryChecks
 
   def draw?
-    @board.uniq.size == 2
+    @who_won = @board.uniq.size == 2
   end
 
   def anybody_win?
@@ -10,7 +10,7 @@ module VictoryChecks
     lines.each do |line|
       someone_won = line.first if line.uniq.size == 1
     end
-    return someone_won
+    @who_won = someone_won
   end
 
 
