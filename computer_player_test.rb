@@ -151,7 +151,17 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_equal 1, turns[:cpu]
   end
 
+  def test_block_three_corner_strategy_blocks_correctly
+    @cpu.which_player = 'O'
+    @game.board[2] = 'X'
+    cpu_choice = @cpu.block_three_corner_strategy(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+    assert_equal 'O', @game.board[6]
+  end
 
+  def test_btcs_blocks_right_when_cpu_is_second_on_second_move
+
+  end
 
 
 

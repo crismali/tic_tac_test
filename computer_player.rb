@@ -96,7 +96,14 @@ class ComputerPlayer
   end
 
   def going_first_strategies(game)
-
+    #three corner strat
+    turns = how_many_turns(game)
+    if turns[:cpu] == 0 || turns[:cpu] == 2
+        selected_space = choose_corner_if_available(game)
+      elsif turns[:cpu] == 1
+        selected_space = 1 if game.board.include? 1
+        selected_space ||= choose_corner_if_available(game)
+      end
   end
 
   def going_second_strategies(game)
@@ -104,13 +111,22 @@ class ComputerPlayer
   end
 
   def block_three_corner_strategy(game)
-
+    selected_space = false
     turns = how_many_turns(game)
-    diagonals = game.get_diagonals
+    corners = game.board.values_at(0,8,2,6)
 
-    if turns.first > turns.last
+    if turns[:cpu] == 0 && corners.include?('X')
+      if corners.index('X').odd?
+        selected_space = corners[corners.index('X') - 1]
+      else
+        selected_space = corners[corners.index('X') + 1]
+      end
     end
+
+    return selected_space
   end
+
+
 
   def how_many_turns(game)
     board = game.board.clone
