@@ -2,6 +2,7 @@ class Game
 
   include GetLines
   include VictoryChecks
+  include Setup
 
   attr_accessor :board, :who_won
 
