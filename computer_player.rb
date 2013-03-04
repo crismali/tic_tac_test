@@ -107,10 +107,10 @@ class ComputerPlayer
   end
 
   def going_second_strategies(game)
-
+    selected_space = block_double_loss_strategies(game)
   end
 
-  def block_three_corner_strategy(game)
+  def block_double_loss_strategies(game)
     selected_space = false
     turns = how_many_turns(game)
     corners = game.board.values_at(0,8,2,6)
@@ -121,6 +121,8 @@ class ComputerPlayer
       else
         selected_space = corners[corners.index('X') + 1]
       end
+    elsif turns[:cpu] == 1 && corners.include?('X') && game.board[4] == 'X'
+      selected_space = choose_corner_if_available(game)
     end
 
     return selected_space

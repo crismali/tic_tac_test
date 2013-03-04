@@ -124,8 +124,8 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_respond_to @cpu, :going_second_strategies
   end
 
-  def test_responds_to_block_three_corner_strategy
-    assert_respond_to @cpu, :block_three_corner_strategy
+  def test_responds_to_block_double_loss_strategies
+    assert_respond_to @cpu, :block_double_loss_strategies
   end
 
   def responds_to_how_many_turns_method
@@ -151,16 +151,22 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_equal 1, turns[:cpu]
   end
 
-  def test_block_three_corner_strategy_blocks_correctly
+  def test_block_double_loss_strategies_blocks_correctly
     @cpu.which_player = 'O'
     @game.board[2] = 'X'
-    cpu_choice = @cpu.block_three_corner_strategy(@game)
+    cpu_choice = @cpu.block_double_loss_strategies(@game)
     @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
     assert_equal 'O', @game.board[6]
   end
 
-  def test_btcs_blocks_right_when_cpu_is_second_on_second_move
-
+  def test_bdls_blocks_right_on_second_move
+    @cpu.which_player = 'O'
+    @game.board[2] = 'X'
+    @game.board[6] = 'O'
+    @game.board[4] = 'X'
+    cpu_choice = @cpu.block_double_loss_strategies(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+    assert_equal 'O', @game.board[8]
   end
 
 
