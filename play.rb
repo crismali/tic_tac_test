@@ -36,7 +36,7 @@ while they_want_to_play_again
   until game.who_won
 
     players.each do |player|
-      game.draw_board
+      game.draw_board if player.is_a? HumanPlayer
       player.mark_the_board(game)
       game.anybody_win?
       game.draw?
