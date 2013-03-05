@@ -237,4 +237,30 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_equal ['O',2,'X',4,5,6,'X','O','X'], @game.board
   end
 
+  def test_bdls_blocks_3_corner_strategy
+    @game.board[0] = 'X'
+    @cpu.which_player = 'O'
+    cpu_choice = @cpu.mark_the_board(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+
+    @game.board[8] = 'X'
+    cpu_choice = @cpu.mark_the_board(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+
+    @game.board[6] = 'X'
+    cpu_choice = @cpu.mark_the_board(@game)
+    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
+    assert_equal 'O', @game.anybody_win?
+  end
+
+  def test_bdls_blocks_the_side_then_corner_corner_double_loss_scenario
+
+
+
+
+  end
+
+
+
+
 end
