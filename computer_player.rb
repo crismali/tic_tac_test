@@ -120,13 +120,13 @@ class ComputerPlayer
     elsif turns[:cpu] == 1 && corners.include?('X') && game.board[4] == 'X'
       selected_space = choose_corner_if_available(game)
     elsif turns[:cpu] == 1 && corners.include?('X') && sides.include?('X')
-      if sides[0] == 'X' && corners[2] == 'X'
+      if game.board[1] == 'X' && game.board[6] == 'X'
         selected_space = 1 unless game.board[0].is_a?(String)
-      elsif sides[0] == 'X' && corners[3] == 'X'
+      elsif game.board[1] == 'X' && game.board[8] == 'X'
         selected_space = 3 unless game.board[2].is_a?(String)
-      elsif sides[1] == 'X' && corners[1] == 'X'
+      elsif game.board[3] == 'X' && game.board[2] == 'X'
         selected_space = 1 unless game.board[0].is_a?(String)
-      else
+      elsif game.board[5] == 'X' && game.board[0] == 'X'
         selected_space = 3 unless game.board[2].is_a?(String)
       end
     elsif turns[:cpu] == 1 && 2 == sides.count {|x| x == 'X'}
