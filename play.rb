@@ -24,12 +24,9 @@ while they_want_to_play_again
   if who_goes_first == opponent_class
     player_1 = opponent_class.new('X')
     player_2 = HumanPlayer.new('O')
-  elsif opponent_class == ComputerPlayer
-    player_1 = HumanPlayer.new('X')
-    player_2 = opponent_class.new('O')
   else
     player_1 = HumanPlayer.new('X')
-    player_2 = HumanPlayer.new('O')
+    player_2 = opponent_class.new('O')
   end
 
   players = Array.new
