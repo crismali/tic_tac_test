@@ -52,27 +52,29 @@ module Setup
     puts "#{@who_won}'s win!" unless @who_won == true
 
     if @who_won == true
-       puts 'It was a draw!'
+       puts 'It was a tie!'
     elsif opponent_class == HumanPlayer
-      puts 'Good job, player 1' if @who_won == 'X'
-      puts 'Good job, player 2' if @who_won == 'O'
-      puts 'Better luck next time, player 1' if @who_won == 'O'
-      puts 'Better luck next time, player 2' if @who_won == 'X'
+      puts 'Good job, player 1.' if @who_won == 'X'
+      puts 'Good job, player 2.' if @who_won == 'O'
+      puts 'Better luck next time, player 1.' if @who_won == 'O'
+      puts 'Better luck next time, player 2.' if @who_won == 'X'
     elsif opponent_class == ComputerPlayer
       if @who_won == 'X'
         if who_goes_first == ComputerPlayer
-          puts "Tough luck, whoever you are"
-          puts "Especially because now that Skynet has mastered Tic-Tac-Toe, "
+          puts "Tough luck, whoever you are."
+          puts "...Especially because now that Skynet has mastered Tic-Tac-Toe, "
           puts "it will focus on global conquest!"
+          puts "...Unless you'd like to play again that is..."
         else
           puts "Good job, whoever you are!"
           puts "But beware... every time Skynet loses, it becomes smarter..."
         end
       elsif @who_won == 'O'
         if who_goes_first == HumanPlayer
-          puts "Tough luck, whoever you are"
+          puts "Tough luck, whoever you are."
           puts "Especially because now that Skynet has mastered Tic-Tac-Toe, "
           puts "it will focus on global conquest!"
+          puts "...Unless you'd like to play again that is..."
         else
           puts "Good job, whoever you are!"
           puts "But beware... every time Skynet loses, it becomes smarter..."
