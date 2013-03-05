@@ -27,7 +27,7 @@ class ComputerPlayer
 
     selected_space ||= choose_corner_if_available(game)
 
-    selected_space ||= choose_random_available_space
+    selected_space ||= choose_random_available_space(game)
 
     game.board[game.board.index(selected_space)] = @which_player
 
