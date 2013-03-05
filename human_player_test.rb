@@ -33,16 +33,21 @@ class HumanPlayerTest < Test::Unit::TestCase
   end
 
   def test_valid_human_input_returns_true_for_valid_input
-    assert_equal true, @player.valid_human_input?('3')
+    assert_equal true, @player.valid_human_input?('3', @game)
   end
 
   def test_valid_human_input_returns_false_for_invalid_input
-    assert_equal false, @player.valid_human_input?('cat')
+    assert_equal false, @player.valid_human_input?('cat', @game)
+  end
+
+  def test_valid_human_input_wont_let_you_mark_an_occupied_space
+    @game.board[0] = 'O'
+    assert_equal false, @player.valid_human_input?('1', @game)
   end
 
   def test_mark_the_board_actually_marks_the_board
     @player.mark_the_board(@game, '1')
-    assert_equal @game.board[0], 'X'
+    assert_equal 'X', @game.board[0]
   end
 
   def test_mark_the_board_cant_mark_already_selected_space
