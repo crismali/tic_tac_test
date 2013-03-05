@@ -50,12 +50,6 @@ class HumanPlayerTest < Test::Unit::TestCase
     assert_equal 'X', @game.board[0]
   end
 
-  def test_mark_the_board_cant_mark_already_selected_space
-    @game.board[2] = 'O'
-    @player.mark_the_board(@game, '3')
-    assert_equal 'O', @game.board[2]
-  end
-
   def test_human_player_has_which_player_attribute_and_method
     assert_equal 'X', @player.which_player
   end
