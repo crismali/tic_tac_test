@@ -28,4 +28,10 @@ class GameTest < Test::Unit::TestCase
     assert_equal 'X', @game.anybody_win?
   end
 
+  def test_anybody_win_changes_who_won_attribute
+    @game.board = ['X','X','X',4,5,6,7,8,9]
+    @game.anybody_win?
+    assert_equal 'X', @game.who_won
+  end
+
 end
