@@ -153,7 +153,7 @@ class ComputerPlayerTest < Test::Unit::TestCase
     @game.board[2] = 'X'
     cpu_choice = @cpu.block_double_loss_strategy(@game)
     @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
-    assert_equal 'O', @game.board[6]
+    assert_equal 'O', @game.board[4]
   end
 
   def test_bdls_blocks_right_on_second_move
