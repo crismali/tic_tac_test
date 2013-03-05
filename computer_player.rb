@@ -109,7 +109,7 @@ class ComputerPlayer
   def block_double_loss_strategy(game)
     selected_space = false
     turns = how_many_turns(game)
-    corners = game.board.values_at(0,8,2,6)
+    corners = game.board.values_at(0,2,6,8)
     sides = game.board.values_at(1,3,5,7)
     remaining_sides = sides.clone.delete_if {|x| x.is_a? String}
 
@@ -119,6 +119,16 @@ class ComputerPlayer
       selected_space = remaining_sides.sample
     elsif turns[:cpu] == 1 && corners.include?('X') && game.board[4] == 'X'
       selected_space = choose_corner_if_available(game)
+    elsif turns[:cpu] == 1 && corners.include?('X') && sides.include?('X')
+      if sides[0] == 'X' && corners[2] == 'X'
+        selected_space = 1 unless game.board[0].is_a?(String)
+      elsif sides[0] == 'X' && corners[3] == 'X'
+        selected_space = 3 unless game.board[2].is_a?(String)
+      elsif sides[1] == 'X' && corners[1] == 'X'
+        selected_space = 1 unless game.board[0].is_a?(String)
+      else
+        selected_space = 3 unless game.board[2].is_a?(String)
+      end
     elsif turns[:cpu] == 1 && 2 == sides.count {|x| x == 'X'}
       xx = ['X','X']
       if sides.values_at(0,1) == xx
@@ -130,7 +140,7 @@ class ComputerPlayer
       elsif sides.values_at(2,3) == xx
         selected_space = 9 unless game.board[8].is_a?(String)
       else
-        selected_space = selected_space = choose_corner_if_available(game)
+        selected_space = choose_corner_if_available(game)
       end
     end
     return selected_space
