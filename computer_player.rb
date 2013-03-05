@@ -86,9 +86,9 @@ class ComputerPlayer
     lines = game.get_lines
     selected_space = false
     lines.each do |line|
-      if line.uniq.size == 3 && line.include?(@which_player)
+      if line.uniq.size == 3 && line.include?(@which_player) && !line.include?(@other_player)
         line_clone = line.clone.delete_if {|x| x.is_a? String}
-        selected_space = line_clone.last
+        selected_space = line_clone.last unless selected_space
       end
     end
     return selected_space
@@ -110,6 +110,7 @@ class ComputerPlayer
     selected_space = false
     turns = how_many_turns(game)
     corners = game.board.values_at(0,8,2,6)
+    sides = game.board.values_at(1,3,5,7)
 
     if turns[:cpu] == 0 && corners.include?('X')
       if corners.index('X').odd?
@@ -119,6 +120,21 @@ class ComputerPlayer
       end
     elsif turns[:cpu] == 1 && corners.include?('X') && game.board[4] == 'X'
       selected_space = choose_corner_if_available(game)
+    elsif turns[:cpu] == 0 && sides.include?('X')
+      selected_space = 5
+    elsif turns[:cpu] == 1 && 2 == sides.count {|x| x == 'X'}
+      xx = ['X','X']
+      if sides.values_at(0,1) == xx
+        selected_space = 1 unless game.board[0].is_a?(String)
+      elsif sides.values_at(0,2) == xx
+        selected_space = 3 unless game.board[2].is_a?(String)
+      elsif sides.values_at(1,3) == xx
+        selected_space = 7 unless game.board[6].is_a?(String)
+      elsif sides.values_at(2,3) == xx
+        selected_space = 9 unless game.board[8].is_a?(String)
+      else
+        selected_space = selected_space = choose_corner_if_available(game)
+      end
     end
 
     return selected_space
