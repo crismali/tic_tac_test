@@ -86,7 +86,7 @@ module Setup
   end
 
   def want_to_play_again?
-    puts 'Would you like to play again?'
+    puts "\nWould you like to play again?"
     puts '(1 for yes, 2 for no)'
 
     while true
