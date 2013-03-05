@@ -51,7 +51,9 @@ module Setup
 
     puts "#{@who_won}'s win!" unless @who_won == true
 
-    if opponent_class == HumanPlayer
+    if @who_won == true
+       puts 'It was a draw!'
+    elsif opponent_class == HumanPlayer
       puts 'Good job, player 1' if @who_won == 'X'
       puts 'Good job, player 2' if @who_won == 'O'
       puts 'Better luck next time, player 1' if @who_won == 'O'
@@ -77,8 +79,6 @@ module Setup
         end
 
       end
-    else
-      puts 'It was a draw'
     end
 
   end
