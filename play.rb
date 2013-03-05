@@ -36,14 +36,14 @@ while they_want_to_play_again
   players << player_1
   players << player_2
 
-  until game.who_won.is_a? String
+  until game.who_won
 
     players.each do |player|
       game.draw_board
       player.mark_the_board(game)
       game.anybody_win?
       game.draw?
-      break if game.who_won.is_a? String
+      break if game.who_won
     end
 
   end
