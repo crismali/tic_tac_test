@@ -14,7 +14,7 @@ class HumanPlayer
     input = false
     input = test.first unless test.empty?
     while true
-      input ||= get_human_input
+      input = get_human_input
       break if valid_human_input?(input, game)
     end
 
