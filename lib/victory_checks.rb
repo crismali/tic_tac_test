@@ -5,7 +5,7 @@ module VictoryChecks
   end
 
   def anybody_win?
-    lines = get_lines
+    lines = get_all_three_in_a_rows
     lines.each do |line|
       @who_won = line.first if line.uniq.size == 1
     end
