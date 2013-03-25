@@ -1,8 +1,7 @@
 module VictoryChecks
 
   def draw?
-    @who_won = @board.uniq.size == 2 unless @who_won
-    @who_won
+    @who_won ||= @board.uniq.size == 2
   end
 
   def anybody_win?
