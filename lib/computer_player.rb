@@ -64,9 +64,9 @@ class ComputerPlayer
   def play_double_loss_strategy(game)
     selected_space = false
     turns = how_many_turns(game)
-    if turns[:cpu] < 3
-      selected_space = choose_corner_if_available(game) if turns[:cpu].even?
-      turns[:cpu].odd? && game.board.include?(1) ? selected_space = 1 : selected_space = choose_corner_if_available(game)
+    if turns < 3
+      selected_space = choose_corner_if_available(game) if turns.even?
+      turns.odd? && game.board.include?(1) ? selected_space = 1 : selected_space = choose_corner_if_available(game)
     end
     selected_space
   end
@@ -78,13 +78,13 @@ class ComputerPlayer
     sides = game.board.values_at(1,3,5,7)
     remaining_sides = sides.clone.delete_if {|x| x.is_a? String}
 
-    if turns[:cpu] == 0 && (corners.include?('X') || sides.include?('X'))
+    if turns == 0 && (corners.include?('X') || sides.include?('X'))
       selected_space = 5
-    elsif turns[:cpu] == 1 && 2 == corners.count {|x| x == 'X'}
+    elsif turns == 1 && 2 == corners.count {|x| x == 'X'}
       selected_space = remaining_sides.sample
-    elsif turns[:cpu] == 1 && corners.include?('X') && game.board[4] == 'X'
+    elsif turns == 1 && corners.include?('X') && game.board[4] == 'X'
       selected_space = choose_corner_if_available(game)
-    elsif turns[:cpu] == 1 && corners.include?('X') && sides.include?('X')
+    elsif turns == 1 && corners.include?('X') && sides.include?('X')
       if game.board[1] == 'X' && game.board[6] == 'X'
         selected_space = 1 unless game.board[0].is_a?(String)
       elsif game.board[1] == 'X' && game.board[8] == 'X'
@@ -94,7 +94,7 @@ class ComputerPlayer
       elsif game.board[5] == 'X' && game.board[0] == 'X'
         selected_space = 3 unless game.board[2].is_a?(String)
       end
-    elsif turns[:cpu] == 1 && 2 == sides.count {|x| x == 'X'}
+    elsif turns == 1 && 2 == sides.count {|x| x == 'X'}
       xx = ['X','X']
       if sides.values_at(0,1) == xx
         selected_space = 1 unless game.board[0].is_a?(String)
@@ -112,11 +112,7 @@ class ComputerPlayer
   end
 
   def how_many_turns(game)
-    board = game.board.clone
-    turns = Hash.new
-    turns[:human] = board.count {|x| x == @other_player}
-    turns[:cpu] = board.count {|x| x == @which_player}
-    return turns
+    turns = game.board.count{|x| x == @which_player}
   end
 
 end

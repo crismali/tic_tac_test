@@ -129,21 +129,15 @@ class ComputerPlayerTest < Test::Unit::TestCase
 
   def test_how_many_turns_returns_proper_values
     @game.board = [  1, 2, 3, 'X', 'X', 'O', 7, 8, 9 ]
-
     turns = @cpu.how_many_turns(@game)
-
-    assert_equal 2, turns[:cpu]
-    assert_equal 1, turns[:human]
+    assert_equal 2, turns
   end
 
   def test_how_many_turns_returns_proper_values_when_cpu_goes_second
     @cpu = ComputerPlayer.new('O')
     @game.board = [  1, 2, 3, 'X', 'X', 'O', 7, 8, 9 ]
-
     turns = @cpu.how_many_turns(@game)
-
-    assert_equal 2, turns[:human]
-    assert_equal 1, turns[:cpu]
+    assert_equal 1, turns
   end
 
   def test_block_double_loss_strategy_blocks_correctly
@@ -296,7 +290,5 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_equal 'O', @game.board[0]
 
   end
-
-
 
 end
