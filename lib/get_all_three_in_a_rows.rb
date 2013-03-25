@@ -1,14 +1,11 @@
 module GetAllThreeInARows
 
   def get_all_three_in_a_rows
-    lines = Array.new
-
-    lines << get_diagonals
-    lines << get_rows
-    lines << get_columns
-
-    return lines.flatten(1)
-
+    three_in_a_rows = []
+    three_in_a_rows << get_diagonals
+    three_in_a_rows << get_rows
+    three_in_a_rows << get_columns
+    three_in_a_rows.flatten(1)
   end
 
   def get_diagonals
