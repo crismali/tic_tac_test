@@ -28,16 +28,8 @@ class ComputerPlayer
   end
 
   def choose_corner_if_available(game)
-    corners = [ 1, 3, 7, 9 ]
-    board_clone = game.board.clone
-    available_corners = board_clone.include_any?(corners)
-
-    if available_corners
-      return available_corners.last
-    else
-      return false
-    end
-
+    corners = game.board.values_at(0,2,6,8).delete_if{|x| x.is_a? String}
+    corners.empty? ? false : corners.last
   end
 
   def choose_random_available_space(game)
