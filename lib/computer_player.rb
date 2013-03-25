@@ -41,9 +41,7 @@ class ComputerPlayer
   end
 
   def choose_random_available_space(game)
-    board_clone = game.board.clone
-    board_clone.delete_if {|x| x.is_a? String}
-    return board_clone.sample
+    game.board.clone.delete_if {|x| x.is_a? String}.sample
   end
 
   def complete_for_win_or_block(game)
