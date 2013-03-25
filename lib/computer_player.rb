@@ -81,13 +81,11 @@ class ComputerPlayer
   def play_double_loss_strategy(game)
     selected_space = false
     turns = how_many_turns(game)
-    if turns[:cpu] == 0 || turns[:cpu] == 2
-      selected_space = choose_corner_if_available(game)
-    elsif turns[:cpu] == 1
-      selected_space = 1 if game.board.include? 1
-      selected_space ||= choose_corner_if_available(game)
+    if turns[:cpu] < 3
+      selected_space = choose_corner_if_available(game) if turns[:cpu].even?
+      turns[:cpu].odd? && game.board.include?(1) ? selected_space = 1 : selected_space = choose_corner_if_available(game)
     end
-    return selected_space
+    selected_space
   end
 
   def block_double_loss_strategy(game)
