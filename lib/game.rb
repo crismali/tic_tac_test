@@ -13,7 +13,6 @@ class Game
 
   def draw_board
    system ('clear')
-
    puts "     |     |      "
    puts "  #{ @board[0] }  |  #{ @board[1] }  |  #{ @board[2] }"
    puts "_____|_____|_____"
@@ -24,6 +23,5 @@ class Game
    puts "  #{ @board[6] }  |  #{ @board[7] }  |  #{ @board[8] }"
    puts "     |     |    "
  end
-
 
 end
