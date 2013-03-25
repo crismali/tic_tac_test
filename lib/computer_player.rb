@@ -46,7 +46,7 @@ class ComputerPlayer
     selected_space = false
     game.get_all_three_in_a_rows.each do |line|
       if line.uniq.size == 3 && line.include?(@which_player) && !line.include?(@other_player)
-        selected_space = line.clone.delete_if {|x| x.is_a? String}.last
+        selected_space = unmarked_spaces(line).last
       end
     end
     selected_space
