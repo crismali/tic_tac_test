@@ -69,15 +69,13 @@ class ComputerPlayer
   end
 
   def choose_line_towards_victory(game)
-    lines = game.get_all_three_in_a_rows
     selected_space = false
-    lines.each do |line|
+    game.get_all_three_in_a_rows.each do |line|
       if line.uniq.size == 3 && line.include?(@which_player) && !line.include?(@other_player)
-        line_clone = line.clone.delete_if {|x| x.is_a? String}
-        selected_space ||= line_clone.last
+        selected_space = line.clone.delete_if {|x| x.is_a? String}.last
       end
     end
-    return selected_space
+    selected_space
   end
 
   def play_double_loss_strategy(game)
