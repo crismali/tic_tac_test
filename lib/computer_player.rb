@@ -71,26 +71,22 @@ class ComputerPlayer
     available_spaces = unmarked_spaces(game.board)
 
     selected_space = 5 if available_spaces.include?(5) && turns == 0
+    selected_space = remaining_sides.sample if 2 == corners.count {|x| x == 'X'} && turns == 1
 
     if turns == 1
-      selected_space = remaining_sides.sample if 2 == corners.count {|x| x == 'X'}
       xx = ['X','X']
 
       if corners.include?('X')
         if game.board[4] == 'X'
           selected_space = choose_corner_if_available(game)
         elsif sides.include?('X')
-          if xx == game.board.values_at(1,6)
+          if xx == game.board.values_at(1,6) || xx == game.board.values_at(3,2)
             selected_space = 1 if available_spaces.include?(1)
-          elsif xx == game.board.values_at(1,8)
-            selected_space = 3 if available_spaces.include?(3)
-          elsif xx == game.board.values_at(3,2)
-            selected_space = 1 if available_spaces.include?(1)
-          elsif xx == game.board.values_at(5,0)
+          elsif xx == game.board.values_at(1,8) || xx == game.board.values_at(5,0)
             selected_space = 3 if available_spaces.include?(3)
           end
         end
-      elsif 2 == sides.count {|x| x == 'X'}
+      else
         if sides.values_at(0,1) == xx
           selected_space = 1 if available_spaces.include?(1)
         elsif sides.values_at(0,2) == xx
