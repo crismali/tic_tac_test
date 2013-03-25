@@ -1,5 +1,4 @@
 require 'test/unit'
-require '../lib/get_all_three_in_a_rows.rb'
 require '../lib/victory_checks.rb'
 require '../lib/setup.rb'
 require '../lib/game.rb'
