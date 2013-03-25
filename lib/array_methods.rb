@@ -1,16 +1,9 @@
 class Array
 
   def include_any?(array)
-    new_array = Array.new
-    array.each do |array_part|
-      new_array << array_part if self.include? array_part
-    end
-
-    if new_array.empty?
-      return false
-    else
-      return new_array
-    end
+    new_array = []
+    array.each {|x| new_array << x if self.include? x }
+    new_array.empty? ? false : new_array
   end
 
 end
