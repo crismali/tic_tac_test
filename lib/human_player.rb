@@ -23,13 +23,8 @@ class HumanPlayer
   end
 
   def get_human_input(*number_string)
-
     input = number_string.first unless number_string.empty?
-
     input ||= gets.chomp
-
-    return input
-
   end
 
   def valid_human_input?(input, game)
