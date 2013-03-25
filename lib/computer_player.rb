@@ -24,11 +24,7 @@ class ComputerPlayer
   end
 
   def choose_center_if_available(game)
-    if game.board.include?(5)
-      return 5
-    else
-      return false
-    end
+    game.board.include?(5) ? 5 : false
   end
 
   def choose_corner_if_available(game)
