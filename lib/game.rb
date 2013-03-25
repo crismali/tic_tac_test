@@ -43,9 +43,7 @@ class Game
   end
 
   def anybody_win?
-    get_all_three_in_a_rows.each do |row_column_diagonal|
-      @who_won = row_column_diagonal.first if row_column_diagonal.uniq.size == 1
-    end
+    get_all_three_in_a_rows.each {|x| @who_won = x.first if x.uniq.size == 1}
     @who_won
   end
 
