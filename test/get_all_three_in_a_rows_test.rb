@@ -11,7 +11,7 @@ class GameTest < Test::Unit::TestCase
   end
 
   def test_all_get_all_three_in_a_rows_methods_accept_no_arguments
-    assert_nothing_raised(ArgumentError) {@game.get_lines}
+    assert_nothing_raised(ArgumentError) {@game.get_all_three_in_a_rows}
     assert_nothing_raised(ArgumentError) {@game.get_diagonals}
     assert_nothing_raised(ArgumentError) {@game.get_rows}
     assert_nothing_raised(ArgumentError) {@game.get_columns}
@@ -58,13 +58,13 @@ class GameTest < Test::Unit::TestCase
   end
 
   def test_get_all_three_in_a_rows_returns_array
-    assert_kind_of Array, @game.get_lines
+    assert_kind_of Array, @game.get_all_three_in_a_rows
   end
 
   def test_get_all_three_in_a_rows_returns_array_containing_each_line
     all_lines = [ [1,5,9], [3,5,7], [1,2,3],[4,5,6],[7,8,9], [1,4,7],[2,5,8],[3,6,9] ]
 
-    assert_equal all_lines, @game.get_lines
+    assert_equal all_lines, @game.get_all_three_in_a_rows
   end
 
 end
