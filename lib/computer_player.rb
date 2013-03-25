@@ -23,12 +23,12 @@ class ComputerPlayer
   end
 
   def choose_corner_if_available(game)
-    corners = game.board.values_at(0,2,6,8).delete_if{|x| x.is_a? String}
+    corners = unmarked_spaces(game.board.values_at(0,2,6,8))
     corners.empty? ? false : corners.last
   end
 
   def choose_random_available_space(game)
-    game.board.clone.delete_if {|x| x.is_a? String}.sample
+    unmarked_spaces(game.board).sample
   end
 
   def complete_for_win_or_block(game)
@@ -67,7 +67,7 @@ class ComputerPlayer
     turns = how_many_turns(game)
     corners = game.board.values_at(0,2,6,8)
     sides = game.board.values_at(1,3,5,7)
-    remaining_sides = sides.clone.delete_if {|x| x.is_a? String}
+    remaining_sides = unmarked_spaces(sides)
 
     if turns == 0 && (corners.include?('X') || sides.include?('X'))
       selected_space = 5
