@@ -13,10 +13,7 @@ module GetAllThreeInARows
   end
 
   def get_rows
-    row_1 = @board.values_at(0,1,2)
-    row_2 = @board.values_at(3,4,5)
-    row_3 = @board.values_at(6,7,8)
-    [ row_1, row_2, row_3 ]
+    [ @board.values_at(0,1,2), @board.values_at(3,4,5), @board.values_at(6,7,8) ]
   end
 
   def get_columns
