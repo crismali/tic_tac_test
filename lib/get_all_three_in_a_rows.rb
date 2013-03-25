@@ -17,10 +17,7 @@ module GetAllThreeInARows
   end
 
   def get_columns
-    column_1 = @board.values_at(0,3,6)
-    column_2 = @board.values_at(1,4,7)
-    column_3 = @board.values_at(2,5,8)
-    [ column_1, column_2, column_3 ]
+    [ @board.values_at(0,3,6), @board.values_at(1,4,7), @board.values_at(2,5,8) ]
   end
 
 end
