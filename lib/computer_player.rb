@@ -68,35 +68,40 @@ class ComputerPlayer
     corners = game.board.values_at(0,2,6,8)
     sides = game.board.values_at(1,3,5,7)
     remaining_sides = unmarked_spaces(sides)
+    available_spaces = unmarked_spaces(game.board)
 
-    if turns == 0 && (corners.include?('X') || sides.include?('X'))
-      selected_space = 5
-    elsif turns == 1 && 2 == corners.count {|x| x == 'X'}
-      selected_space = remaining_sides.sample
-    elsif turns == 1 && corners.include?('X') && game.board[4] == 'X'
-      selected_space = choose_corner_if_available(game)
-    elsif turns == 1 && corners.include?('X') && sides.include?('X')
-      if game.board[1] == 'X' && game.board[6] == 'X'
-        selected_space = 1 unless game.board[0].is_a?(String)
-      elsif game.board[1] == 'X' && game.board[8] == 'X'
-        selected_space = 3 unless game.board[2].is_a?(String)
-      elsif game.board[3] == 'X' && game.board[2] == 'X'
-        selected_space = 1 unless game.board[0].is_a?(String)
-      elsif game.board[5] == 'X' && game.board[0] == 'X'
-        selected_space = 3 unless game.board[2].is_a?(String)
-      end
-    elsif turns == 1 && 2 == sides.count {|x| x == 'X'}
+    selected_space = 5 if available_spaces.include?(5) && turns == 0
+
+    if turns == 1
+      selected_space = remaining_sides.sample if 2 == corners.count {|x| x == 'X'}
       xx = ['X','X']
-      if sides.values_at(0,1) == xx
-        selected_space = 1 unless game.board[0].is_a?(String)
-      elsif sides.values_at(0,2) == xx
-        selected_space = 3 unless game.board[2].is_a?(String)
-      elsif sides.values_at(1,3) == xx
-        selected_space = 7 unless game.board[6].is_a?(String)
-      elsif sides.values_at(2,3) == xx
-        selected_space = 9 unless game.board[8].is_a?(String)
-      else
-        selected_space = choose_corner_if_available(game)
+
+      if corners.include?('X')
+        if game.board[4] == 'X'
+          selected_space = choose_corner_if_available(game)
+        elsif sides.include?('X')
+          if xx == game.board.values_at(1,6)
+            selected_space = 1 if available_spaces.include?(1)
+          elsif xx == game.board.values_at(1,8)
+            selected_space = 3 if available_spaces.include?(3)
+          elsif xx == game.board.values_at(3,2)
+            selected_space = 1 if available_spaces.include?(1)
+          elsif xx == game.board.values_at(5,0)
+            selected_space = 3 if available_spaces.include?(3)
+          end
+        end
+      elsif 2 == sides.count {|x| x == 'X'}
+        if sides.values_at(0,1) == xx
+          selected_space = 1 if available_spaces.include?(1)
+        elsif sides.values_at(0,2) == xx
+          selected_space = 3 if available_spaces.include?(3)
+        elsif sides.values_at(1,3) == xx
+          selected_space = 7 if available_spaces.include?(7)
+        elsif sides.values_at(2,3) == xx
+          selected_space = 9 if available_spaces.include?(9)
+        else
+          selected_space = choose_corner_if_available(game)
+        end
       end
     end
     return selected_space
