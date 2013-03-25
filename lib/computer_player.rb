@@ -47,10 +47,8 @@ class ComputerPlayer
   end
 
   def complete_for_win_or_block(game)
-    lines = game.get_all_three_in_a_rows
     selected_space = false
-
-    lines.each do |line|
+    game.get_all_three_in_a_rows.each do |line|
       if line.uniq.size == 2
 
         line_clone = line.clone.delete_if {|x| x.is_a? String}
