@@ -4,12 +4,7 @@ class ComputerPlayer
 
   def initialize(which_player)
     @which_player = which_player
-    if @which_player == 'X'
-      @other_player = 'O'
-    else
-      @other_player = 'X'
-    end
-
+    @which_player == 'X' ? @other_player = 'O' : @other_player = 'X'
   end
 
   def mark_the_board(game)
