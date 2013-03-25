@@ -1,5 +1,5 @@
 require 'test/unit'
-require '../lib/get_lines.rb'
+require '../lib/get_all_three_in_a_rows.rb'
 require '../lib/victory_checks.rb'
 require '../lib/setup.rb'
 require '../lib/game.rb'
@@ -10,7 +10,7 @@ class GameTest < Test::Unit::TestCase
     @game = Game.new
   end
 
-  def test_all_get_lines_methods_accept_no_arguments
+  def test_all_get_all_three_in_a_rows_methods_accept_no_arguments
     assert_nothing_raised(ArgumentError) {@game.get_lines}
     assert_nothing_raised(ArgumentError) {@game.get_diagonals}
     assert_nothing_raised(ArgumentError) {@game.get_rows}
@@ -57,12 +57,12 @@ class GameTest < Test::Unit::TestCase
     assert_equal [3,6,9], column_3
   end
 
-  def test_get_lines_returns_array
+  def test_get_all_three_in_a_rows_returns_array
     assert_kind_of Array, @game.get_lines
   end
 
-  def test_get_lines_returns_array_containing_each_line
-    all_lines = [ [1,5,9], [3,5,7], [1,2,3],[4,5,6],[7,8,9], [1,4,7],[2,5,8],[3,6,9]]
+  def test_get_all_three_in_a_rows_returns_array_containing_each_line
+    all_lines = [ [1,5,9], [3,5,7], [1,2,3],[4,5,6],[7,8,9], [1,4,7],[2,5,8],[3,6,9] ]
 
     assert_equal all_lines, @game.get_lines
   end

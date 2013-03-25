@@ -1,7 +1,6 @@
-module GetLines
+module GetAllThreeInARows
 
-  def get_lines
-
+  def get_all_three_in_a_rows
     lines = Array.new
 
     lines << get_diagonals

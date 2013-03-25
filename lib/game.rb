@@ -1,6 +1,6 @@
 class Game
 
-  include GetLines
+  include GetAllThreeInARows
   include VictoryChecks
   include Setup
 
