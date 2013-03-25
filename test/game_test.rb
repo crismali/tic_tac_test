@@ -1,6 +1,5 @@
 require 'test/unit'
 require '../lib/array_methods.rb'
-require '../lib/victory_checks.rb'
 require '../lib/setup.rb'
 require '../lib/game.rb'
 
