@@ -61,7 +61,7 @@ class ComputerPlayer
   end
 
   def complete_for_win_or_block(game)
-    lines = game.get_lines
+    lines = game.get_all_three_in_a_rows
     selected_space = false
 
     lines.each do |line|
@@ -83,7 +83,7 @@ class ComputerPlayer
   end
 
   def choose_line_towards_victory(game)
-    lines = game.get_lines
+    lines = game.get_all_three_in_a_rows
     selected_space = false
     lines.each do |line|
       if line.uniq.size == 3 && line.include?(@which_player) && !line.include?(@other_player)
