@@ -115,4 +115,8 @@ class ComputerPlayer
     turns = game.board.count{|x| x == @which_player}
   end
 
+  def unmarked_spaces(array)
+    array.reject { |x| x.is_a? String }
+  end
+
 end

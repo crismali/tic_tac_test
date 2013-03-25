@@ -291,4 +291,13 @@ class ComputerPlayerTest < Test::Unit::TestCase
 
   end
 
+  def test_unmarked_spaces_returns_proper_values
+    @game.board = ['O',2,'X',4,5,6,'X','O','X']
+    assert_equal [2,4,5,6], @cpu.unmarked_spaces(@game.board)
+  end
+
+  def test_unmarked_spaces_returns_proper_values_when_passed_a_smaller_array
+    assert_equal [1,3], @cpu.unmarked_spaces(['X',1,'O',3])
+  end
+
 end
