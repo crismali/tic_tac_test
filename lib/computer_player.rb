@@ -67,6 +67,7 @@ class ComputerPlayer
     turns = how_many_turns(game)
     corners = game.board.values_at(0,2,6,8)
     sides = game.board.values_at(1,3,5,7)
+    absolute_sides = [2,4,6,8]
     remaining_sides = unmarked_spaces(sides)
     available_spaces = unmarked_spaces(game.board)
 
@@ -87,17 +88,8 @@ class ComputerPlayer
           end
         end
       else
-        if sides.values_at(0,1) == xx
-          selected_space = 1 if available_spaces.include?(1)
-        elsif sides.values_at(0,2) == xx
-          selected_space = 3 if available_spaces.include?(3)
-        elsif sides.values_at(1,3) == xx
-          selected_space = 7 if available_spaces.include?(7)
-        elsif sides.values_at(2,3) == xx
-          selected_space = 9 if available_spaces.include?(9)
-        else
-          selected_space = choose_corner_if_available(game)
-        end
+        #blocks 2 adjacent side strat
+        selected_space = absolute_sides.delete_if{|x| unmarked_spaces(sides).include?(x)}.reduce(:+) - 5
       end
     end
     return selected_space
