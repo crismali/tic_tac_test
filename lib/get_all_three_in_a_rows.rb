@@ -9,9 +9,7 @@ module GetAllThreeInARows
   end
 
   def get_diagonals
-    diagonal_1 = @board.values_at(0,4,8)
-    diagonal_2 = @board.values_at(2,4,6)
-    [ diagonal_1, diagonal_2 ]
+    [ @board.values_at(0,4,8), @board.values_at(2,4,6) ]
   end
 
   def get_rows
