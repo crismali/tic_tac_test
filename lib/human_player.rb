@@ -7,19 +7,15 @@ class HumanPlayer
   end
 
   def mark_the_board(game, *test)
-
     puts "Please enter a number that corresponds to an unmarked space."
     puts "(psst, in case you forgot, you're #{@which_player}'s)"
-
     input = false
     input = test.first unless test.empty?
     while true
       input = get_human_input unless test.first.to_i > 0 && test.first.to_i < 10
       break if valid_human_input?(input, game)
     end
-
     game.board[input.to_i - 1] = @which_player unless game.board[input.to_i - 1].is_a? String
-
   end
 
   def get_human_input(*number_string)
