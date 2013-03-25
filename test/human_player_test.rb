@@ -1,9 +1,9 @@
 require 'test/unit'
-require './get_lines.rb'
-require './victory_checks.rb'
-require './setup.rb'
-require './game.rb'
-require './human_player.rb'
+require '../lib/get_lines.rb'
+require '../lib/victory_checks.rb'
+require '../lib/setup.rb'
+require '../lib/game.rb'
+require '../lib/human_player.rb'
 
 class HumanPlayerTest < Test::Unit::TestCase
 

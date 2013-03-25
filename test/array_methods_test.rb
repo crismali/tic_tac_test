@@ -1,5 +1,5 @@
 require 'test/unit'
-require './array_methods.rb'
+require '../lib/array_methods.rb'
 
 class ArrayTest < Test::Unit::TestCase
 

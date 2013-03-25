@@ -1,10 +1,10 @@
 require 'test/unit'
-require './array_methods.rb'
-require './get_lines.rb'
-require './victory_checks.rb'
-require './setup.rb'
-require './game.rb'
-require './computer_player.rb'
+require '../lib/array_methods.rb'
+require '../lib/get_lines.rb'
+require '../lib/victory_checks.rb'
+require '../lib/setup.rb'
+require '../lib/game.rb'
+require '../lib/computer_player.rb'
 
 class ComputerPlayerTest < Test::Unit::TestCase
 
