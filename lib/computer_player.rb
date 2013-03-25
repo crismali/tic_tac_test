@@ -34,21 +34,12 @@ class ComputerPlayer
   def complete_for_win_or_block(game)
     selected_space = false
     game.get_all_three_in_a_rows.each do |line|
-      if line.uniq.size == 2
-
-        line_clone = line.clone.delete_if {|x| x.is_a? String}
-
-        unless line_clone.empty?
-          if line.include?(@which_player)
-            selected_space = line_clone.first
-          else
-            selected_space ||= line_clone.first
-          end
-        end
+      available_spaces = unmarked_spaces(line)
+      if line.uniq.size == 2 && !available_spaces.empty?
+        line.include?(@which_player) ? selected_space = available_spaces.first : selected_space ||= available_spaces.first
       end
     end
-
-    return selected_space
+    selected_space
   end
 
   def choose_line_towards_victory(game)
