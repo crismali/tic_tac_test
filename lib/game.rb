@@ -38,6 +38,14 @@ class Game
     [ @board.values_at(0,3,6), @board.values_at(1,4,7), @board.values_at(2,5,8) ]
   end
 
+  def get_sides
+    @board.values_at(1,3,5,7)
+  end
+
+  def get_corners
+    @board.values_at(0,2,6,8)
+  end
+
   def draw?
     @who_won ||= @board.uniq.size == 2
   end
