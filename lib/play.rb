@@ -1,6 +1,4 @@
 require './array_methods.rb'
-require './get_all_three_in_a_rows.rb'
-require './victory_checks.rb'
 require './setup.rb'
 require './game.rb'
 require './human_player.rb'
