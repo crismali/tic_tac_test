@@ -23,7 +23,7 @@ class ComputerPlayer
   end
 
   def choose_corner_if_available(game)
-    corners = unmarked_spaces(game.board.values_at(0,2,6,8))
+    corners = unmarked_spaces(game.get_corners)
     corners.empty? ? false : corners.last
   end
 
@@ -64,8 +64,8 @@ class ComputerPlayer
   def block_double_loss_strategy(game)
     selected_space = false
     turns = how_many_turns(game)
-    corners = game.board.values_at(0,2,6,8)
-    sides = game.board.values_at(1,3,5,7)
+    corners = game.get_corners
+    sides = game.get_sides
     absolute_sides = [2,4,6,8]
     absolute_board = [1,2,3,4,6,7,8,9]
 
