@@ -32,14 +32,13 @@ class ComputerPlayer
   end
 
   def complete_for_win_or_block(game)
-    selected_space = false
+    selection = false
     game.get_all_three_in_a_rows.each do |line|
-      available_spaces = unmarked_spaces(line)
-      if line.uniq.size == 2 && !available_spaces.empty?
-        line.include?(@which_player) ? selected_space = available_spaces.first : selected_space ||= available_spaces.first
+      if line.uniq.size == 2 && !unmarked_spaces(line).empty?
+        line.include?(@which_player) ? selection = unmarked_spaces(line).first : selection ||= unmarked_spaces(line).first
       end
     end
-    selected_space
+    selection
   end
 
   def choose_line_towards_victory(game)
