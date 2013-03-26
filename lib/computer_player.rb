@@ -72,7 +72,7 @@ class ComputerPlayer
 
   def block_strategy_involving_corner_space(game)
     if game.board[4] == @first_player
-      selected_space = choose_corner_if_available(game)
+      choose_corner_if_available(game)
     elsif game.get_sides.include? @first_player
       block_corner_then_side_strategy(game)
     else
@@ -85,7 +85,7 @@ class ComputerPlayer
   def block_corner_then_side_strategy(game)
     opponents_spaces = [1,2,3,4,6,7,8,9].delete_if{|x| unmarked_spaces(game.board).include?(x)}
     product_of_opponent_spaces = opponents_spaces.map{|x|x-1}.reduce(:*)
-    6 == product_of_opponent_spaces ? selected_space = 1 : selected_space = 3
+    6 == product_of_opponent_spaces ? 1 : 3
   end
 
   def how_many_turns(game)
