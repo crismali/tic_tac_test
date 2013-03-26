@@ -69,9 +69,8 @@ class ComputerPlayer
     absolute_sides = [2,4,6,8]
     absolute_board = [1,2,3,4,6,7,8,9]
 
-    selected_space = bdls_first_move(game) if turns == 1
-
     if turns == 1
+      selected_space = unmarked_spaces(game.get_sides).sample if 2 == game.get_corners.count {|x| x == 'X'}
       if corners.include?('X')
         if game.board[4] == 'X'
           selected_space = choose_corner_if_available(game)
@@ -86,10 +85,6 @@ class ComputerPlayer
       end
     end
     selected_space
-  end
-
-  def bdls_first_move(game)
-    2 == game.get_corners.count {|x| x == 'X'} ? unmarked_spaces(game.get_sides).sample : false
   end
 
   def how_many_turns(game)
