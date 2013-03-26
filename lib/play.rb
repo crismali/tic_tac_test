@@ -1,4 +1,3 @@
-require './array_methods.rb'
 require './setup.rb'
 require './game.rb'
 require './human_player.rb'
