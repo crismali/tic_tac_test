@@ -10,7 +10,7 @@ class ComputerPlayer
   def mark_the_board(game)
     selected_space = complete_for_win_or_block(game)
     selected_space ||= play_double_loss_strategy(game) if @which_player == 'X'
-    selected_space ||= block_double_loss_strategy(game) if @which_player == 'O' && how_many_turns = 1
+    selected_space ||= block_double_loss_strategy(game) if @which_player == 'O' && how_many_turns(game) == 1
     selected_space ||= choose_line_towards_victory(game)
     selected_space ||= choose_center_if_available(game)
     selected_space ||= choose_corner_if_available(game)
@@ -69,11 +69,12 @@ class ComputerPlayer
     absolute_sides = [2,4,6,8]
     absolute_board = [1,2,3,4,6,7,8,9]
 
-    selected_space = unmarked_spaces(game.get_sides).sample if 2 == game.get_corners.count {|x| x == @other_player}
-    if corners.include?(@other_player)
-      if game.board[4] == @other_player
+
+    selected_space = unmarked_spaces(game.get_sides).sample if 2 == game.get_corners.count {|x| x == 'X'}
+    if corners.include?('X')
+      if game.board[4] == 'X'
         selected_space = choose_corner_if_available(game)
-      elsif sides.include?(@other_player)
+      elsif sides.include?('X')
         #blocks corner then side / vice versa strategy
         6 == absolute_board.delete_if{|x| unmarked_spaces(game.board).include?(x)}.map{|x|x-1}.reduce(:*) ? selected_space = 1 : selected_space = 3
       end
