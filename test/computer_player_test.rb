@@ -1,3 +1,5 @@
+system 'clear'
+
 require 'test/unit'
 require '../lib/setup.rb'
 require '../lib/game.rb'
