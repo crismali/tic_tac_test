@@ -18,10 +18,7 @@ class GameTest < Test::Unit::TestCase
 
   def test_can_change_value_of_board_elements
     @game.board[3] = 'X'
-
     assert_equal 'X', @game.board[3]
-
   end
-
 
 end
