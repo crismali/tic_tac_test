@@ -64,15 +64,10 @@ class ComputerPlayer
 
   def block_double_loss_strategy(game)
     selected_space = false
-
-    selected_space = unmarked_spaces(game.get_sides).sample if 2 == game.get_corners.count {|x| x == @first_player}
-
-    selected_space ||= block_strategy_involving_corner_space(game) if game.get_corners.include? @first_player
-
-    unless game.get_corners.include?(@first_player)
-      #blocks 2 adjacent side strat
-      selected_space = [2,4,6,8].delete_if{|x| unmarked_spaces(game.get_sides).include?(x)}.reduce(:+) - 5
-      selected_space = false if selected_space == 5
+    if 2 == game.get_corners.count {|x| x == @first_player}
+      selected_space = unmarked_spaces(game.get_sides).sample
+    elsif game.get_corners.include? @first_player
+      selected_space = block_strategy_involving_corner_space(game)
     end
     selected_space
   end
@@ -83,6 +78,10 @@ class ComputerPlayer
     elsif game.get_sides.include?(@first_player)
       #blocks corner then side / vice versa strategy
       6 == [1,2,3,4,6,7,8,9].delete_if{|x| unmarked_spaces(game.board).include?(x)}.map{|x|x-1}.reduce(:*) ? selected_space = 1 : selected_space = 3
+    else
+      #blocks 2 adjacent side strat
+      selected_space = [2,4,6,8].delete_if{|x| unmarked_spaces(game.get_sides).include?(x)}.reduce(:+) - 5
+      selected_space = false if selected_space == 5
     end
   end
 
