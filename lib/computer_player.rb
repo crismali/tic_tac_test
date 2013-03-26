@@ -3,6 +3,7 @@ class ComputerPlayer
   attr_accessor :which_player, :other_player
 
   def initialize(which_player)
+    @first_player = 'X'
     @which_player = which_player
     @which_player == 'X' ? @other_player = 'O' : @other_player = 'X'
   end
@@ -70,11 +71,11 @@ class ComputerPlayer
     absolute_board = [1,2,3,4,6,7,8,9]
 
 
-    selected_space = unmarked_spaces(game.get_sides).sample if 2 == game.get_corners.count {|x| x == 'X'}
-    if corners.include?('X')
-      if game.board[4] == 'X'
+    selected_space = unmarked_spaces(game.get_sides).sample if 2 == game.get_corners.count {|x| x == @first_player}
+    if corners.include?(@first_player)
+      if game.board[4] == @first_player
         selected_space = choose_corner_if_available(game)
-      elsif sides.include?('X')
+      elsif sides.include?(@first_player)
         #blocks corner then side / vice versa strategy
         6 == absolute_board.delete_if{|x| unmarked_spaces(game.board).include?(x)}.map{|x|x-1}.reduce(:*) ? selected_space = 1 : selected_space = 3
       end
