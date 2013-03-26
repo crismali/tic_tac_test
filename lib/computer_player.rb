@@ -66,17 +66,11 @@ class ComputerPlayer
     selected_space = false
     how_many_corners_they_chose = game.get_corners.count {|x| x == @first_player}
     selected_space = unmarked_spaces(game.get_sides).sample if 2 == how_many_corners_they_chose
-    selected_space ||= block_strategy_involving_corner_space(game) if 1 == how_many_corners_they_chose
+    if 1 == how_many_corners_they_chose && game.get_sides.include?(@first_player)
+      selected_space ||= block_corner_then_side_strategy(game)
+    end
     selected_space ||= block_2_adjacent_side_strategy(game)
     selected_space
-  end
-
-  def block_strategy_involving_corner_space(game)
-    if game.board[4] == @first_player
-      choose_corner_if_available(game)
-    elsif game.get_sides.include? @first_player
-      block_corner_then_side_strategy(game)
-    end
   end
 
   def block_corner_then_side_strategy(game)
