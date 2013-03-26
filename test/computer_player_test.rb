@@ -140,14 +140,6 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_equal 1, turns
   end
 
-  def test_block_double_loss_strategy_blocks_correctly
-    @cpu.which_player = 'O'
-    @game.board[2] = 'X'
-    cpu_choice = @cpu.block_double_loss_strategy(@game)
-    @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
-    assert_equal 'O', @game.board[4]
-  end
-
   def test_bdls_blocks_right_on_second_move
     @cpu.which_player = 'O'
     @game.board[2] = 'X'
@@ -307,6 +299,16 @@ class ComputerPlayerTest < Test::Unit::TestCase
     @game.board[4] = 'O'
     @game.board[7] = 'X'
     assert_not_equal 5, @cpu.block_double_loss_strategy(@game)
+  end
+
+  def test_mark_the_board_chooses_center_when_first_turn_going_second
+    @cpu.which_player = 'O'
+    @cpu.other_player = 'X'
+    @game.board[0] = 'X'
+    board_clone = @game.board.clone
+    board_clone[4] = 'O'
+    @cpu.mark_the_board(@game)
+    assert_equal board_clone, @game.board
   end
 
 end

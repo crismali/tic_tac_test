@@ -69,7 +69,6 @@ class ComputerPlayer
     absolute_sides = [2,4,6,8]
     absolute_board = [1,2,3,4,6,7,8,9]
 
-    selected_space = choose_center_if_available(game) if turns == 0
     selected_space = unmarked_spaces(sides).sample if 2 == corners.count {|x| x == 'X'} && turns == 1
 
     if turns == 1
