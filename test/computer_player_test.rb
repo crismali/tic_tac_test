@@ -1,5 +1,4 @@
 require 'test/unit'
-require '../lib/array_methods.rb'
 require '../lib/setup.rb'
 require '../lib/game.rb'
 require '../lib/computer_player.rb'
