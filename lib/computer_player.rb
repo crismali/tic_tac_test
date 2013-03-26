@@ -69,7 +69,7 @@ class ComputerPlayer
     absolute_sides = [2,4,6,8]
     absolute_board = [1,2,3,4,6,7,8,9]
 
-    selected_space = 5 if unmarked_spaces(game.board).include?(5) && turns == 0
+    selected_space = choose_center_if_available(game) if turns == 0
     selected_space = unmarked_spaces(sides).sample if 2 == corners.count {|x| x == 'X'} && turns == 1
 
     if turns == 1
@@ -83,6 +83,7 @@ class ComputerPlayer
       else
         #blocks 2 adjacent side strat
         selected_space = absolute_sides.delete_if{|x| unmarked_spaces(sides).include?(x)}.reduce(:+) - 5
+        selected_space = false if selected_space == 5
       end
     end
     selected_space

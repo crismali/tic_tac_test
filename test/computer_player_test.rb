@@ -300,4 +300,13 @@ class ComputerPlayerTest < Test::Unit::TestCase
     assert_equal [1,3], @cpu.unmarked_spaces(['X',1,'O',3])
   end
 
+  def test_bdls_can_handle_2_opposite_sides_being_chosen_like_28_or_46
+    @cpu.which_player = 'O'
+    @cpu.other_player = 'X'
+    @game.board[1] = 'X'
+    @game.board[4] = 'O'
+    @game.board[7] = 'X'
+    assert_not_equal 5, @cpu.block_double_loss_strategy(@game)
+  end
+
 end
