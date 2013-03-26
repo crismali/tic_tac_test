@@ -68,12 +68,10 @@ class ComputerPlayer
     corners = game.board.values_at(0,2,6,8)
     sides = game.board.values_at(1,3,5,7)
     absolute_sides = [2,4,6,8]
-    remaining_sides = unmarked_spaces(sides)
-    available_spaces = unmarked_spaces(game.board)
     absolute_board = [1,2,3,4,6,7,8,9]
 
-    selected_space = 5 if available_spaces.include?(5) && turns == 0
-    selected_space = remaining_sides.sample if 2 == corners.count {|x| x == 'X'} && turns == 1
+    selected_space = 5 if unmarked_spaces(game.board).include?(5) && turns == 0
+    selected_space = unmarked_spaces(sides).sample if 2 == corners.count {|x| x == 'X'} && turns == 1
 
     if turns == 1
       if corners.include?('X')
@@ -81,7 +79,7 @@ class ComputerPlayer
           selected_space = choose_corner_if_available(game)
         elsif sides.include?('X')
           #blocks corner then side / vice versa strategy
-          6 == absolute_board.delete_if{|x| available_spaces.include?(x)}.map{|x|x-1}.reduce(:*) ? selected_space = 1 : selected_space = 3
+          6 == absolute_board.delete_if{|x| unmarked_spaces(game.board).include?(x)}.map{|x|x-1}.reduce(:*) ? selected_space = 1 : selected_space = 3
         end
       else
         #blocks 2 adjacent side strat
