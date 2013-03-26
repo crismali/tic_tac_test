@@ -88,7 +88,7 @@ class ComputerPlayer
   end
 
   def how_many_turns(game)
-    turns = game.board.count{|x| x == @which_player}
+    game.board.count{|x| x == @which_player}
   end
 
   def unmarked_spaces(array)
