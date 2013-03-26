@@ -70,22 +70,25 @@ class ComputerPlayer
     absolute_sides = [2,4,6,8]
     absolute_board = [1,2,3,4,6,7,8,9]
 
-
     selected_space = unmarked_spaces(game.get_sides).sample if 2 == game.get_corners.count {|x| x == @first_player}
-    if corners.include?(@first_player)
-      if game.board[4] == @first_player
-        selected_space = choose_corner_if_available(game)
-      elsif sides.include?(@first_player)
-        #blocks corner then side / vice versa strategy
-        6 == absolute_board.delete_if{|x| unmarked_spaces(game.board).include?(x)}.map{|x|x-1}.reduce(:*) ? selected_space = 1 : selected_space = 3
-      end
-    else
+
+    selected_space ||= block_strategy_involving_corner_space(game) if game.get_corners.include? @first_player
+
+    unless corners.include?(@first_player)
       #blocks 2 adjacent side strat
       selected_space = absolute_sides.delete_if{|x| unmarked_spaces(sides).include?(x)}.reduce(:+) - 5
       selected_space = false if selected_space == 5
     end
-
     selected_space
+  end
+
+  def block_strategy_involving_corner_space(game)
+    if game.board[4] == @first_player
+      selected_space = choose_corner_if_available(game)
+    elsif game.get_sides.include?(@first_player)
+      #blocks corner then side / vice versa strategy
+      6 == [1,2,3,4,6,7,8,9].delete_if{|x| unmarked_spaces(game.board).include?(x)}.map{|x|x-1}.reduce(:*) ? selected_space = 1 : selected_space = 3
+    end
   end
 
   def how_many_turns(game)
