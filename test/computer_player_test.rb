@@ -208,7 +208,6 @@ class ComputerPlayerTest < Test::Unit::TestCase
     @game.board[7] = 'O'
     cpu_choice = @cpu.play_double_loss_strategy(@game)
     @game.board[@game.board.index(cpu_choice)] = @cpu.which_player
-
     assert_equal ['O',2,'X',4,5,6,'X','O','X'], @game.board
   end
 
@@ -216,13 +215,10 @@ class ComputerPlayerTest < Test::Unit::TestCase
     @game.board[0] = 'X'
     @cpu.which_player = 'O'
     @cpu.mark_the_board(@game)
-
     @game.board[8] = 'X'
     @cpu.mark_the_board(@game)
-
     @game.board[6] = 'X'
     @cpu.mark_the_board(@game)
-
     assert_equal 'O', @game.anybody_win?
   end
 
@@ -230,48 +226,36 @@ class ComputerPlayerTest < Test::Unit::TestCase
     @game.board[1] = 'X'
     @cpu.which_player = 'O'
     @cpu.mark_the_board(@game)
-
     @game.board[8] = 'X'
     @cpu.mark_the_board(@game)
-
     assert_equal 'O', @game.board[2]
-
   end
 
   def test_bdls_blocks_the_side_then_corner_corner_double_loss_scenario_variant_2736
     @game.board[1] = 'X'
     @cpu.which_player = 'O'
     @cpu.mark_the_board(@game)
-
     @game.board[6] = 'X'
     @cpu.mark_the_board(@game)
-
     assert_equal 'O', @game.board[0]
-
   end
 
   def test_bdls_blocks_the_side_then_corner_corner_double_loss_scenario_variant_6139
     @game.board[5] = 'X'
     @cpu.which_player = 'O'
     @cpu.mark_the_board(@game)
-
     @game.board[0] = 'X'
     @cpu.mark_the_board(@game)
-
     assert_equal 'O', @game.board[2]
-
   end
 
   def test_bdls_blocks_the_side_then_corner_corner_double_loss_scenario_variant_4317
     @game.board[3] = 'X'
     @cpu.which_player = 'O'
     @cpu.mark_the_board(@game)
-
     @game.board[2] = 'X'
     @cpu.mark_the_board(@game)
-
     assert_equal 'O', @game.board[0]
-
   end
 
   def test_unmarked_spaces_returns_proper_values
