@@ -30,16 +30,15 @@ module Setup
 
   def who_goes_first?
     puts "\nWould you like to go first?"
-    puts "(enter 1 for yes or 2 for no)"
 
     while true
       user_input = gets.chomp
-      if user_input == '1'
+      if user_input[0] == 'y'
         return HumanPlayer
-      elsif user_input == '2'
+      elsif user_input[0] == 'n'
         return ComputerPlayer
       else
-        puts "Please enter a 1 (to go first) or a 2 (to go second)"
+        puts "Please enter yes or no"
       end
     end
 
