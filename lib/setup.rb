@@ -16,7 +16,6 @@ module Setup
     player_2_class = false
     until player_2_class
       user_input = gets.chomp
-
       if user_input == "1"
         player_2_class = HumanPlayer
       elsif user_input == "2"
@@ -30,7 +29,6 @@ module Setup
 
   def who_goes_first?
     puts "\nWould you like to go first?"
-
     while true
       user_input = gets.chomp
       if user_input[0] == 'y'
@@ -41,15 +39,12 @@ module Setup
         puts "Please enter yes or no"
       end
     end
-
   end
 
   def game_over(opponent_class, who_goes_first)
     system ('clear')
     draw_board
-
     puts "#{@who_won}'s win!" unless @who_won == true
-
     if @who_won == true
        puts 'It was a tie!'
     elsif opponent_class == HumanPlayer
@@ -78,7 +73,6 @@ module Setup
           puts "Good job, whoever you are!"
           puts "But beware... every time Skynet loses, it becomes smarter..."
         end
-
       end
     end
 
@@ -86,20 +80,16 @@ module Setup
 
   def want_to_play_again?
     puts "\nWould you like to play again?"
-    puts '(1 for yes, 2 for no)'
-
     while true
       input = gets.chomp
-      if input == '2'
+      if user_input[0] == 'y'
         return false
-      elsif input == '1'
+      elsif user_input[0] == 'n'
         return true
       else
-        puts 'Invalid input: please enter a 1 for yes or a 2 for no.'
+        puts "Please enter yes or no"
       end
     end
   end
-
-
 
 end
