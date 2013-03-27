@@ -48,10 +48,8 @@ module Setup
     if @who_won == true
        puts 'It was a tie!'
     elsif opponent_class == HumanPlayer
-      puts 'Good job, player 1.' if @who_won == 'X'
-      puts 'Good job, player 2.' if @who_won == 'O'
-      puts 'Better luck next time, player 1.' if @who_won == 'O'
-      puts 'Better luck next time, player 2.' if @who_won == 'X'
+      puts "Good job, #{@who_won}'s!"
+      puts "Better luck next time, #{@who_won == 'X' ? 'O' : 'X'}'s."
     elsif opponent_class == ComputerPlayer
       if @who_won == 'X'
         if who_goes_first == ComputerPlayer
@@ -82,9 +80,9 @@ module Setup
     puts "\nWould you like to play again?"
     while true
       input = gets.chomp
-      if user_input[0] == 'y'
+      if input[0] == 'y'
         return false
-      elsif user_input[0] == 'n'
+      elsif input[0] == 'n'
         return true
       else
         puts "Please enter yes or no"
