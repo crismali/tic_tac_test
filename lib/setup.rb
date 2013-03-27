@@ -81,9 +81,9 @@ module Setup
     while true
       input = gets.chomp
       if input[0] == 'y'
-        return false
-      elsif input[0] == 'n'
         return true
+      elsif input[0] == 'n'
+        return false
       else
         puts "Please enter yes or no"
       end
