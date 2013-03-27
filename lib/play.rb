@@ -26,9 +26,7 @@ while they_want_to_play_again
     player_2 = opponent_class.new('O')
   end
 
-  players = Array.new
-  players << player_1
-  players << player_2
+  players = player_1, player_2
 
   until game.who_won
 
