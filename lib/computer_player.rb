@@ -9,9 +9,10 @@ class ComputerPlayer
   end
 
   def mark_the_board(game)
+    turns = how_many_turns(game)
     selected_space = complete_for_win_or_block(game)
-    selected_space ||= play_double_loss_strategy(game) if @which_player == 'X'
-    selected_space ||= block_double_loss_strategy(game) if @which_player == 'O' && how_many_turns(game) == 1
+    selected_space ||= play_double_loss_strategy(game) if @which_player == 'X' && turns < 3
+    selected_space ||= block_double_loss_strategy(game) if @which_player == 'O' && turns == 1
     selected_space ||= choose_line_towards_victory(game)
     selected_space ||= choose_center_if_available(game)
     selected_space ||= choose_corner_if_available(game)
@@ -55,10 +56,8 @@ class ComputerPlayer
   def play_double_loss_strategy(game)
     selected_space = false
     turns = how_many_turns(game)
-    if turns < 3
-      selected_space = choose_corner_if_available(game) if turns.even?
-      turns.odd? && game.board.include?(1) ? selected_space = 1 : selected_space = choose_corner_if_available(game)
-    end
+    selected_space = choose_corner_if_available(game) if turns.even?
+    turns.odd? && game.board.include?(1) ? selected_space = 1 : selected_space = choose_corner_if_available(game)
     selected_space
   end
 
