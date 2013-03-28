@@ -74,8 +74,7 @@ class ComputerPlayer
 
   def block_corner_then_side_strategy(board)
     opponents_spaces = [1,2,3,4,6,7,8,9].delete_if{|x| unmarked_spaces(board).include?(x)}
-    product_of_opponent_spaces = opponents_spaces.map{|x|x-1}.reduce(:*)
-    6 == product_of_opponent_spaces ? 1 : 3
+    6 == opponents_spaces.map{|x|x-1}.reduce(:*) ? 1 : 3
   end
 
   def block_2_adjacent_side_strategy(board)
