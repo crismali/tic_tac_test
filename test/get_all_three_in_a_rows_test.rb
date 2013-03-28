@@ -1,4 +1,5 @@
 require 'test/unit'
+require '../lib/board.rb'
 require '../lib/setup.rb'
 require '../lib/game.rb'
 
