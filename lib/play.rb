@@ -28,16 +28,12 @@ while they_want_to_play_again
 
   players = player_1, player_2
 
-  until game.who_won
-
-    players.each do |player|
-      game.draw_board if player.is_a? HumanPlayer
-      player.mark_the_board(game)
-      game.anybody_win?
-      game.draw?
-      break if game.who_won
-    end
-
+  9.times do |i|
+    game.draw_board if players[i % 2].is_a? HumanPlayer
+    players[i % 2].mark_the_board(game)
+    game.anybody_win?
+    game.draw?
+    break if game.who_won
   end
 
   game.game_over(opponent_class, who_goes_first)
