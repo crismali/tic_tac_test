@@ -5,7 +5,7 @@ class Board < Array
     flatten!
   end
 
-  def get_all_three_in_a_rows
+  def get_all_diagonals_rows_and_columns
     [ get_diagonals, get_rows, get_columns].flatten(1)
   end
 

@@ -35,7 +35,7 @@ class ComputerPlayer
 
   def complete_for_win_or_block(board)
     selection = false
-    board.get_all_three_in_a_rows.each do |line|
+    board.get_all_diagonals_rows_and_columns.each do |line|
       if line.uniq.size == 2 && !unmarked_spaces(line).empty?
         line.include?(@which_player) ? selection = unmarked_spaces(line).first : selection ||= unmarked_spaces(line).first
       end
@@ -45,7 +45,7 @@ class ComputerPlayer
 
   def choose_line_towards_victory(board)
     selected_space = false
-    board.get_all_three_in_a_rows.each do |line|
+    board.get_all_diagonals_rows_and_columns.each do |line|
       if line.uniq.size == 3 && line.include?(@which_player) && !line.include?(@other_player)
         selected_space = unmarked_spaces(line).last
       end

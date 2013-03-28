@@ -33,7 +33,7 @@ class Game
   end
 
   def anybody_win?
-    board.get_all_three_in_a_rows.each {|x| return true if x.uniq.size == 1}
+    board.get_all_diagonals_rows_and_columns.each {|x| return true if x.uniq.size == 1}
     false
   end
 
