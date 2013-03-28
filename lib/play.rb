@@ -28,7 +28,7 @@ while true
 
   9.times do |i|
     game.draw_board if players[i % 2].is_a? HumanPlayer
-    players[i % 2].mark_the_board(game)
+    players[i % 2].mark_the_board(game.board)
     game.anybody_win?
     game.draw?
     break if game.who_won
