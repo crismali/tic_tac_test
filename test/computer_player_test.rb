@@ -220,7 +220,7 @@ class ComputerPlayerTest < Test::Unit::TestCase
     @cpu.mark_the_board(@game.board)
     @game.board[6] = 'X'
     @cpu.mark_the_board(@game.board)
-    assert_equal 'O', @game.anybody_win?
+    assert_equal true, @game.anybody_win?
   end
 
   def test_bdls_blocks_the_side_then_corner_corner_double_loss_scenario_2914
