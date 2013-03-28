@@ -13,7 +13,6 @@ class HumanPlayer
     input = test.first.to_i unless test.empty?
     while true
       input = get_human_input.to_i unless test.first.to_i > 0 && test.first.to_i < 10
-      puts "input = #{input}"
       break if valid_human_input?(input, board)
     end
     change_the_board(board, input - 1)
