@@ -13,9 +13,9 @@ class HumanPlayer
     input = test.first unless test.empty?
     while true
       input = get_human_input unless test.first.to_i > 0 && test.first.to_i < 10
-      break if valid_human_input?(input, board)
+      break if valid_human_input?(input.to_i, board)
     end
-    board[input.to_i - 1] = @which_player unless board[input.to_i - 1].is_a? String
+    board[input.to_i - 1] = @which_player unless space_marked? board[input.to_i - 1]
   end
 
   def get_human_input(*number_string)
@@ -24,9 +24,7 @@ class HumanPlayer
   end
 
   def valid_human_input?(input, board)
-    available_spaces = board.clone.delete_if {|x| x.is_a? String }
-    input = input.to_i
-    if available_spaces.include?(input)
+    if board.reject {|x| space_marked? x }.include?(input)
       return true
     else
       puts "Invalid choice: only numbers that are greater than 0 or less than 10 "
@@ -34,4 +32,9 @@ class HumanPlayer
       return false
     end
   end
+
+  def space_marked?(space)
+    space.is_a? String
+  end
+
 end

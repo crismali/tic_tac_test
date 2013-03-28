@@ -32,7 +32,7 @@ class HumanPlayerTest < Test::Unit::TestCase
   end
 
   def test_valid_human_input_returns_true_for_valid_input
-    assert_equal true, @player.valid_human_input?('3', @game.board)
+    assert_equal true, @player.valid_human_input?(3, @game.board)
   end
 
   def test_valid_human_input_returns_false_for_invalid_input
