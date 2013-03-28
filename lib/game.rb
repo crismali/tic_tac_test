@@ -2,7 +2,7 @@ class Game
 
   include Setup
 
-  attr_accessor :board, :who_won
+  attr_accessor :board, :who_won, :players
 
   def initialize
     @board = Board.new
@@ -22,13 +22,23 @@ class Game
     puts "     |     |    "
   end
 
+  def play(players)
+    @players = players
+    9.times do |i|
+      draw_board if players[i % 2].is_a? HumanPlayer
+      players[i % 2].mark_the_board(board)
+      @who_won = players[i % 2] if anybody_win?
+      break if who_won
+    end
+  end
+
   def draw?
-    @who_won ||= @board.uniq.size == 2
+    @board.uniq.size == 2
   end
 
   def anybody_win?
-    board.get_all_three_in_a_rows.each {|x| @who_won = x.first if x.uniq.size == 1}
-    @who_won
+    board.get_all_three_in_a_rows.each {|x| return true if x.uniq.size == 1}
+    false
   end
 
 end
