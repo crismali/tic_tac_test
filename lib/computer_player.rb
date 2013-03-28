@@ -87,7 +87,7 @@ class ComputerPlayer
   end
 
   def unmarked_spaces(array)
-    array.reject { |x| x.is_a? Symbol }
+    array.select { |x| x.is_a? Integer }
   end
 
 end
