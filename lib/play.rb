@@ -3,9 +3,7 @@ require './game.rb'
 require './human_player.rb'
 require './computer_player.rb'
 
-they_want_to_play_again = true
-
-while they_want_to_play_again
+while true
 
   game = Game.new
 
@@ -38,6 +36,6 @@ while they_want_to_play_again
 
   game.game_over(opponent_class, who_goes_first)
 
-  they_want_to_play_again = game.want_to_play_again?
+  break unless game.want_to_play_again?
 
 end
