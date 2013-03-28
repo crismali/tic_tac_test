@@ -1,4 +1,3 @@
-require './setup.rb'
 require './board.rb'
 require './game.rb'
 require './human_player.rb'
