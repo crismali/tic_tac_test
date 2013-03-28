@@ -34,7 +34,7 @@ class HumanPlayer
   end
 
   def space_marked?(space)
-    space.is_a? String
+    space.is_a? Symbol
   end
 
 end

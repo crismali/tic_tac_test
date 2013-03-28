@@ -8,7 +8,7 @@ class HumanPlayerTest < Test::Unit::TestCase
 
   def setup
     @game = Game.new
-    @player = HumanPlayer.new('X')
+    @player = HumanPlayer.new(:X)
   end
 
   def test_human_player_is_a_class
@@ -40,17 +40,17 @@ class HumanPlayerTest < Test::Unit::TestCase
   end
 
   def test_valid_human_input_wont_let_you_mark_an_occupied_space
-    @game.board[0] = 'O'
+    @game.board[0] = :O
     assert_equal false, @player.valid_human_input?('1', @game.board)
   end
 
   def test_mark_the_board_actually_marks_the_board
     @player.mark_the_board(@game.board, '1')
-    assert_equal 'X', @game.board[0]
+    assert_equal :X, @game.board[0]
   end
 
   def test_human_player_has_which_player_attribute_and_method
-    assert_equal 'X', @player.which_player
+    assert_equal :X, @player.which_player
   end
 
 end

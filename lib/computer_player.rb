@@ -3,16 +3,16 @@ class ComputerPlayer
   attr_accessor :which_player, :other_player
 
   def initialize(which_player)
-    @first_player = 'X'
+    @first_player = :X
     @which_player = which_player
-    @which_player == 'X' ? @other_player = 'O' : @other_player = 'X'
+    @which_player == :X ? @other_player = :O : @other_player = :X
   end
 
   def mark_the_board(board)
     turns = how_many_turns(board)
     selected_space = complete_for_win_or_block(board)
-    selected_space ||= play_double_loss_strategy(board) if @which_player == 'X' && turns < 3
-    selected_space ||= block_double_loss_strategy(board) if @which_player == 'O' && turns == 1
+    selected_space ||= play_double_loss_strategy(board) if @which_player == @first_player && turns < 3
+    selected_space ||= block_double_loss_strategy(board) if @which_player != @first_player && turns == 1
     selected_space ||= choose_line_towards_victory(board)
     selected_space ||= choose_center_if_available(board)
     selected_space ||= choose_corner_if_available(board)
@@ -87,7 +87,7 @@ class ComputerPlayer
   end
 
   def unmarked_spaces(array)
-    array.reject { |x| x.is_a? String }
+    array.reject { |x| x.is_a? Symbol }
   end
 
 end
