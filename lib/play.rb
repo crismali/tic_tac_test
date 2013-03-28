@@ -12,3 +12,4 @@ while true
   game.game_over
   break unless game.want_to_play_again?
 end
+puts '\nThanks for playing!'
