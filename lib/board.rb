@@ -2,6 +2,7 @@ class Board < Array
 
   def initialize
     self << [1,2,3,4,5,6,7,8,9]
+    flatten!
   end
 
   def get_all_three_in_a_rows
