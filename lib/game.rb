@@ -32,10 +32,6 @@ class Game
     end
   end
 
-  def draw?
-    @board.uniq.size == 2
-  end
-
   def anybody_win?
     board.get_all_three_in_a_rows.each {|x| return true if x.uniq.size == 1}
     false
