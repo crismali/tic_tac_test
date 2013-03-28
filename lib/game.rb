@@ -27,7 +27,7 @@ class Game
   end
 
   def anybody_win?
-    get_all_three_in_a_rows.each {|x| @who_won = x.first if x.uniq.size == 1}
+    board.get_all_three_in_a_rows.each {|x| @who_won = x.first if x.uniq.size == 1}
     @who_won
   end
 
