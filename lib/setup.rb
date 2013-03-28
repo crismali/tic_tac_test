@@ -31,9 +31,9 @@ module Setup
     puts "\nWould you like to go first?"
     while true
       user_input = gets.chomp
-      if user_input[0] == 'y'
+      if user_input[/y/]
         return HumanPlayer
-      elsif user_input[0] == 'n'
+      elsif user_input[/n/]
         return ComputerPlayer
       else
         puts "Please enter yes or no"
@@ -80,9 +80,9 @@ module Setup
     puts "\nWould you like to play again?"
     while true
       input = gets.chomp
-      if input[0] == 'y'
+      if input[/y/]
         return true
-      elsif input[0] == 'n'
+      elsif input[/n/]
         return false
       else
         puts "Please enter yes or no"
