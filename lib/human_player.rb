@@ -6,16 +6,16 @@ class HumanPlayer
     @which_player = which_player
   end
 
-  def mark_the_board(game, *test)
+  def mark_the_board(board, *test)
     puts "Please enter a number that corresponds to an unmarked space."
     puts "(psst, in case you forgot, you're #{@which_player}'s)"
     input = false
     input = test.first unless test.empty?
     while true
       input = get_human_input unless test.first.to_i > 0 && test.first.to_i < 10
-      break if valid_human_input?(input, game)
+      break if valid_human_input?(input, board)
     end
-    game.board[input.to_i - 1] = @which_player unless game.board[input.to_i - 1].is_a? String
+    board[input.to_i - 1] = @which_player unless board[input.to_i - 1].is_a? String
   end
 
   def get_human_input(*number_string)
@@ -23,8 +23,8 @@ class HumanPlayer
     input ||= gets.chomp
   end
 
-  def valid_human_input?(input, game)
-    board_clone = game.board.clone.delete_if {|x| x.is_a? String }
+  def valid_human_input?(input, board)
+    board_clone = board.clone.delete_if {|x| x.is_a? String }
     if input.respond_to?(:to_i)
       input = input.to_i
       if input > 0 && input < 10
